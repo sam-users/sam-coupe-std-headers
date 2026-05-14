@@ -1,4 +1,4 @@
-# samcoupestandardh <!-- omit from toc -->
+# samcoupestdheaders <!-- omit from toc -->
 
 This project contains a set of standard header files for SAM Coupé
 Z80 assembly language development. They're meant to make your life easier by defining a bunch of common constants once, so that you don't have to look them up online.
