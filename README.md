@@ -54,10 +54,10 @@ We have two scripts in the project so far. They're written in Python and live in
 
 | Script file | Purpose |
 | ----------- | ------- |
-| generate_lowercase_lables.py | Generates lowercase versions of the uppercase files, without altering keywords, strings, or comments. |
-| list_equ_labvels_table.py | Generates a list of all of the header file symbols that correspond to equates, in alphabetical order, including the file they came from. |
+| [generate_lowercase_labels.py](scripts/generate_lowercase_labels.py) | Generates lowercase versions of the uppercase files, without altering keywords, strings, or comments. |
+| [list_equ_labels_table.py](scripts/list_equ_labels_table.py) | Generates a list of all of the header file symbols that correspond to equates, in alphabetical order, including the file they came from. |
 
-The Default Build Action in VS Code is set to run `generate_lowercase_tables.py` on the codebase, and should be run after you add or edit an upper-case file.
+The Default Build Action in VS Code is set to run `generate_lowercase_labels.py` on the codebase, and should be run after you add or edit an upper-case file.
 
 ## Coding Style
 
