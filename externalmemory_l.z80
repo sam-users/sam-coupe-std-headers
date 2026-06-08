@@ -17,5 +17,5 @@
 ; Author: Simon Cooke (spectecjr@gmail.com)
 ; Licensed under the MIT license (see LICENSE file).
 
-xmemprl: equ &80
-xmemprh: equ &81
+xmemprl: EQU &80
+xmemprh: EQU &81

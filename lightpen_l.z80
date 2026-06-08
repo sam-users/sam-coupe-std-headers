@@ -4,10 +4,10 @@
 ; Author: Simon Cooke (spectecjr@gmail.com)
 ; Licensed under the MIT license (see LICENSE file).
 
-lpen:                equ 248
-xpen:                equ lpen
-xpen_coord_mask:     equ %11111100
-lpen_clut_bcd1:      equ %00000001
-lpen_miditxfmst_bit: equ %00000010
-hpen:                equ 504
-ypen:                equ hpen
+lpen:                EQU 248
+xpen:                EQU lpen
+xpen_coord_mask:     EQU %11111100
+lpen_clut_bcd1:      EQU %00000001
+lpen_miditxfmst_bit: EQU %00000010
+hpen:                EQU 504
+ypen:                EQU hpen

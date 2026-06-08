@@ -4,121 +4,121 @@
 ; Author: Simon Cooke (spectecjr@gmail.com)
 ; Licensed under the MIT license (see LICENSE file).
 
-; Bottom 5 bits of the keyboard row are read using keyboard_low
-keyboard_low:       equ 254
-keyboard_low_mask:  equ %00011111
+; Bottom 5 bits of the keyboard row are read using KEYBOARD_LOW
+keyboard_low:       EQU 254
+keyboard_low_mask:  EQU %00011111
 
-; Top 3 bits of the keyboard row are read using keyboard_high
-keyboard_high:      equ 249
-keyboard_high_mask: equ %11100000
+; Top 3 bits of the keyboard row are read using KEYBOARD_HIGH
+keyboard_high:      EQU 249
+keyboard_high_mask: EQU %11100000
 
-keyboard_row_0:     equ %11111110
-keyboard_row_1:     equ %11111101
-keyboard_row_2:     equ %11111011
-keyboard_row_3:     equ %11110111
-keyboard_row_4:     equ %11101111
-keyboard_row_5:     equ %11011111
-keyboard_row_6:     equ %10111111
-keyboard_row_7:     equ %01111111
-keyboard_row_8:     equ %11111111
+keyboard_row_0:     EQU %11111110
+keyboard_row_1:     EQU %11111101
+keyboard_row_2:     EQU %11111011
+keyboard_row_3:     EQU %11110111
+keyboard_row_4:     EQU %11101111
+keyboard_row_5:     EQU %11011111
+keyboard_row_6:     EQU %10111111
+keyboard_row_7:     EQU %01111111
+keyboard_row_8:     EQU %11111111
 
 ; Read mouse port.
-keyboard_rdmsel:    equ keyboard_row_8
+keyboard_rdmsel:    EQU keyboard_row_8
 
 ; ROW 0 values
 
 ; Note: We're calling these KEYBITs, so that we don't collide
 ; with any use of KEY_ to mean a specific KEY elsewhere.
 
-keybit_shift:       equ %00000001
-keybit_z:           equ %00000010
-keybit_x:           equ %00000100
-keybit_c:           equ %00001000
-keybit_v:           equ %00010000
-keybit_f1:          equ %00100000
-keybit_f2:          equ %01000000
-keybit_f3:          equ %10000000
+keybit_shift:       EQU %00000001
+keybit_z:           EQU %00000010
+keybit_x:           EQU %00000100
+keybit_c:           EQU %00001000
+keybit_v:           EQU %00010000
+keybit_f1:          EQU %00100000
+keybit_f2:          EQU %01000000
+keybit_f3:          EQU %10000000
 
 ; ROW 1 values
 
-keybit_a:           equ %00000001
-keybit_s:           equ %00000010
-keybit_d:           equ %00000100
-keybit_f:           equ %00001000
-keybit_g:           equ %00010000
-keybit_f4:          equ %00100000
-keybit_f5:          equ %01000000
-keybit_f6:          equ %10000000
+keybit_a:           EQU %00000001
+keybit_s:           EQU %00000010
+keybit_d:           EQU %00000100
+keybit_f:           EQU %00001000
+keybit_g:           EQU %00010000
+keybit_f4:          EQU %00100000
+keybit_f5:          EQU %01000000
+keybit_f6:          EQU %10000000
 
 ; ROW 2 values
 
-keybit_q:           equ %00000001
-keybit_w:           equ %00000010
-keybit_e:           equ %00000100
-keybit_r:           equ %00001000
-keybit_t:           equ %00010000
-keybit_f7:          equ %00100000
-keybit_f8:          equ %01000000
-keybit_f9:          equ %10000000
+keybit_q:           EQU %00000001
+keybit_w:           EQU %00000010
+keybit_e:           EQU %00000100
+keybit_r:           EQU %00001000
+keybit_t:           EQU %00010000
+keybit_f7:          EQU %00100000
+keybit_f8:          EQU %01000000
+keybit_f9:          EQU %10000000
 
 ; ROW 3 values
 
-keybit_1:           equ %00000001
-keybit_2:           equ %00000010
-keybit_3:           equ %00000100
-keybit_4:           equ %00001000
-keybit_5:           equ %00010000
-keybit_esc:         equ %00100000
-keybit_tab:         equ %01000000
-keybit_caps:        equ %10000000
+keybit_1:           EQU %00000001
+keybit_2:           EQU %00000010
+keybit_3:           EQU %00000100
+keybit_4:           EQU %00001000
+keybit_5:           EQU %00010000
+keybit_esc:         EQU %00100000
+keybit_tab:         EQU %01000000
+keybit_caps:        EQU %10000000
 
 ; ROW 4 values
 
-keybit_0:           equ %00000001
-keybit_9:           equ %00000010
-keybit_8:           equ %00000100
-keybit_7:           equ %00001000
-keybit_6:           equ %00010000
-keybit_minus:       equ %00100000
-keybit_plus:        equ %01000000
-keybit_delete:      equ %10000000
+keybit_0:           EQU %00000001
+keybit_9:           EQU %00000010
+keybit_8:           EQU %00000100
+keybit_7:           EQU %00001000
+keybit_6:           EQU %00010000
+keybit_minus:       EQU %00100000
+keybit_plus:        EQU %01000000
+keybit_delete:      EQU %10000000
 
 ; ROW 5 values
 
-keybit_p:           equ %00000001
-keybit_o:           equ %00000010
-keybit_i:           equ %00000100
-keybit_u:           equ %00001000
-keybit_y:           equ %00010000
-keybit_equals:      equ %00100000
-keybit_quote:       equ %01000000
-keybit_f0:          equ %10000000
+keybit_p:           EQU %00000001
+keybit_o:           EQU %00000010
+keybit_i:           EQU %00000100
+keybit_u:           EQU %00001000
+keybit_y:           EQU %00010000
+keybit_equals:      EQU %00100000
+keybit_quote:       EQU %01000000
+keybit_f0:          EQU %10000000
 
 ; ROW 6 values
 
-keybit_return:      equ %00000001
-keybit_l:           equ %00000010
-keybit_k:           equ %00000100
-keybit_j:           equ %00001000
-keybit_h:           equ %00010000
-keybit_semicolon:   equ %00100000
-keybit_colon:       equ %01000000
-keybit_edit:        equ %10000000
+keybit_return:      EQU %00000001
+keybit_l:           EQU %00000010
+keybit_k:           EQU %00000100
+keybit_j:           EQU %00001000
+keybit_h:           EQU %00010000
+keybit_semicolon:   EQU %00100000
+keybit_colon:       EQU %01000000
+keybit_edit:        EQU %10000000
 
 ; ROW 7 values
 
-keybit_space:       equ %00000001
-keybit_symbol:      equ %00000010
-keybit_m:           equ %00000100
-keybit_n:           equ %00001000
-keybit_b:           equ %00010000
-keybit_comma:       equ %00100000
-keybit_period:      equ %01000000
-keybit_inv:         equ %10000000
+keybit_space:       EQU %00000001
+keybit_symbol:      EQU %00000010
+keybit_m:           EQU %00000100
+keybit_n:           EQU %00001000
+keybit_b:           EQU %00010000
+keybit_comma:       EQU %00100000
+keybit_period:      EQU %0100000  0
+keybit_inv:         EQU %10000000
 
 ; ROW 8 values
-keybit_cntrl:       equ %00000001
-keybit_down:        equ %00000010
-keybit_up:          equ %00000100
-keybit_left:        equ %00001000
-keybit_right:       equ %00010000
+keybit_cntrl:       EQU %00000001
+keybit_down:        EQU %00000010
+keybit_up:          EQU %00000100
+keybit_left:        EQU %00001000
+keybit_right:       EQU %00010000

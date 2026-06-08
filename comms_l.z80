@@ -10,19 +10,19 @@
 
 ; Printer ports
 
-printer_0_data:                            equ 232
-printer_0_control:                         equ 233
+printer_0_data:                            EQU 232
+printer_0_control:                         EQU 233
 
-printer_1_data:                            equ 234
-printer_1_control:                         equ 235
+printer_1_data:                            EQU 234
+printer_1_control:                         EQU 235
 
 ; Write PRINTER_STROBE to PRINTER_x_CONTROL to strobe.
 ; Set = Data is ready. Set->Reset transition = Send.
-printer_strobe:                            equ %00000001
+printer_strobe:                            EQU %00000001
 
 ; Read PRINTER_x_CONTROL and mask with PRINTER_BUSY
 ; to see if printer is ready for next byte.
-printer_busy:                              equ %00000001
+printer_busy:                              EQU %00000001
 
 ; Example of usage:
 ; send_byte_to_LPT0:
@@ -49,113 +49,113 @@ printer_busy:                              equ %00000001
 ; Data sheet: https://www.nxp.com/docs/en/data-sheet/SCC2691.pdf
 
 ; RS232 Serial Comms port base address
-comms_port_base:                           equ 236
+comms_port_base:                           EQU 236
 
-comms_0_base:                              equ comms_port_base + 0
-comms_1_base:                              equ comms_port_base + 1
-comms_2_base:                              equ comms_port_base + 2
-comms_3_base:                              equ comms_port_base + 3
+comms_0_base:                              EQU comms_port_base + 0
+comms_1_base:                              EQU comms_port_base + 1
+comms_2_base:                              EQU comms_port_base + 2
+comms_3_base:                              EQU comms_port_base + 3
 
 ; [R/W] - Mode registers 1 & 2
-comms_mr:                                  equ &0000
-comms_mr_h:                                equ &00
+comms_mr:                                  EQU &0000
+comms_mr_h:                                EQU &00
 ; [RO]  - Channel Status register
-comms_sr:                                  equ &0100
-comms_sr_h:                                equ &01
+comms_sr:                                  EQU &0100
+comms_sr_h:                                EQU &01
 ; [RO]  - BRG Test mode - reading toggles to 2nd alternate set of baud rates
-comms_brg_test:                            equ &0200
-comms_brg_test_h:                          equ &02
+comms_brg_test:                            EQU &0200
+comms_brg_test_h:                          EQU &02
 ; [RO]  - Recieve Holding register
-comms_rhr:                                 equ &0300
-comms_rhr_h:                               equ &03
+comms_rhr:                                 EQU &0300
+comms_rhr_h:                               EQU &03
 ; [RO]  -
-comms_1x_16x_test:                         equ &0400
-comms_1x_16x_test_h:                       equ &04
+comms_1x_16x_test:                         EQU &0400
+comms_1x_16x_test_h:                       EQU &04
 ; [RO]  - Interrupt Status register
-comms_isr:                                 equ &0500
-comms_isr_h:                               equ &05
+comms_isr:                                 EQU &0500
+comms_isr_h:                               EQU &05
 ; [R/W] - Counter/Timer Upper
-comms_ctu:                                 equ &0600
-comms_ctu_h:                               equ &06
+comms_ctu:                                 EQU &0600
+comms_ctu_h:                               EQU &06
 ; [R/W] - Counter/Timer Lower
-comms_ctl:                                 equ &0700
-comms_ctl_h:                               equ &07
+comms_ctl:                                 EQU &0700
+comms_ctl_h:                               EQU &07
 ; [WO] - Clock Select register
-comms_csr:                                 equ &0100
-comms_csr_h:                               equ &01
+comms_csr:                                 EQU &0100
+comms_csr_h:                               EQU &01
 ; [WO] - Command register
-comms_cr:                                  equ &0200
-comms_cr_h:                                equ &02
+comms_cr:                                  EQU &0200
+comms_cr_h:                                EQU &02
 ; [WO] - Transmit Holding register
-comms_thr:                                 equ &0300
-comms_thr_h:                               equ &03
+comms_thr:                                 EQU &0300
+comms_thr_h:                               EQU &03
 ; [WO] - Auxiliary Control register
-comms_acr:                                 equ &0400
-comms_acr_h:                               equ &04
+comms_acr:                                 EQU &0400
+comms_acr_h:                               EQU &04
 ; [WO] - Interrupt Mask register
-comms_imr:                                 equ &0500
-comms_imr_h:                               equ &05
+comms_imr:                                 EQU &0500
+comms_imr_h:                               EQU &05
 
 ; Mode Register 1 [R/W]
 ; =====================
 
 ; Mode Register 1 Parity Mode values
 
-comms_mr1_with_parity:                     equ %00000000
-comms_mr1_force_parity:                    equ %00001000
-comms_mr1_no_parity:                       equ %00010000
-comms_mr1_special_mode:                    equ %00011000
-comms_mr1_parity_mode_mask:                equ %00011000
+comms_mr1_with_parity:                     EQU %00000000
+comms_mr1_force_parity:                    EQU %00001000
+comms_mr1_no_parity:                       EQU %00010000
+comms_mr1_special_mode:                    EQU %00011000
+comms_mr1_parity_mode_mask:                EQU %00011000
 
 ; Mode Register 1 Parity Types
-comms_mr1_even_parity:                     equ %00000000
-comms_mr1_odd_parity:                      equ %00000100
-comms_mr1_parity_type_mask:                equ %00000100
+comms_mr1_even_parity:                     EQU %00000000
+comms_mr1_odd_parity:                      EQU %00000100
+comms_mr1_parity_type_mask:                EQU %00000100
 
 ; Mode Register 1 Bits per Character
-comms_mr1_5_bits_per_char:                 equ %00000000
-comms_mr1_6_bits_per_char:                 equ %00000001
-comms_mr1_7_bits_per_char:                 equ %00000010
-comms_mr1_8_bits_per_char:                 equ %00000011
-comms_mr1_bits_per_char_mask:              equ %00000011
+comms_mr1_5_bits_per_char:                 EQU %00000000
+comms_mr1_6_bits_per_char:                 EQU %00000001
+comms_mr1_7_bits_per_char:                 EQU %00000010
+comms_mr1_8_bits_per_char:                 EQU %00000011
+comms_mr1_bits_per_char_mask:              EQU %00000011
 
 ; Mode Register 1 Error Mode
-comms_mr1_error_mode_mask:                 equ %00100000
-comms_mr1_char_error_mode:                 equ %00000000
-comms_mr1_block_error_mode:                equ %00100000
+comms_mr1_error_mode_mask:                 EQU %00100000
+comms_mr1_char_error_mode:                 EQU %00000000
+comms_mr1_block_error_mode:                EQU %00100000
 
 ; Mode Register 1 Receiver Interrupt Mode Select
-comms_mr1_rx_int_mask:                     equ %01000000
-comms_mr1_rx_int_on_rx_ready:              equ %00000000
-comms_mr1_rx_int_on_fifo_full:             equ %01000000
+comms_mr1_rx_int_mask:                     EQU %01000000
+comms_mr1_rx_int_on_rx_ready:              EQU %00000000
+comms_mr1_rx_int_on_fifo_full:             EQU %01000000
 
 ; Mode Register 1 RTS Control Mode Select
-comms_mr1_rx_rts_mask:                     equ %10000000
-comms_mr1_rx_rts_disabled:                 equ %00000000
-comms_mr1_rx_rts_enabled:                  equ %10000000
+comms_mr1_rx_rts_mask:                     EQU %10000000
+comms_mr1_rx_rts_disabled:                 EQU %00000000
+comms_mr1_rx_rts_enabled:                  EQU %10000000
 
 ; Mode Register 2 [R/W]
 ; =====================
 
 ; Mode Register 2 Channel Mode setting
 
-comms_mr2_channel_mode_mask:               equ %11000000
-comms_mr2_channel_mode_normal:             equ %00000000
-comms_mr2_channel_mode_auto_echo:          equ %01000000
-comms_mr2_channel_mode_local_loop:         equ %10000000
-comms_mr2_channel_mode_remote_loop:        equ %11000000
+comms_mr2_channel_mode_mask:               EQU %11000000
+comms_mr2_channel_mode_normal:             EQU %00000000
+comms_mr2_channel_mode_auto_echo:          EQU %01000000
+comms_mr2_channel_mode_local_loop:         EQU %10000000
+comms_mr2_channel_mode_remote_loop:        EQU %11000000
 
 ; Mode Register 2 TX Request-To-Send (RTS) Mode select
 
-comms_mr2_tx_rts_mask:                     equ %00100000
-comms_mr2_tx_rts_disabled:                 equ %00000000
-comms_mr2_tx_rts_enabled:                  equ %00100000
+comms_mr2_tx_rts_mask:                     EQU %00100000
+comms_mr2_tx_rts_disabled:                 EQU %00000000
+comms_mr2_tx_rts_enabled:                  EQU %00100000
 
 ; Mode Register 2 Clear-to-Send (CTS) Mode select
 
-comms_mr2_cts_enable_mask:                 equ %00010000
-comms_mr2_cts_disabled:                    equ %00000000
-comms_mr2_cts_enabled:                     equ %00010000
+comms_mr2_cts_enable_mask:                 EQU %00010000
+comms_mr2_cts_disabled:                    EQU %00000000
+comms_mr2_cts_enabled:                     EQU %00010000
 
 ; Mode Register 2 Stop Bit Length
 
@@ -164,31 +164,31 @@ comms_mr2_cts_enabled:                     equ %00010000
 ;       the first 8 settings are 0.5 longer than normal.
 ;       This is reflected in the naming below.
 
-comms_mr2_stop_bit_length_mask:            equ %00001111
-comms_mr2_stop_bit_length_5bpc_1_063:      equ %0000
-comms_mr2_stop_bit_length_5bpc_1_125:      equ %0001
-comms_mr2_stop_bit_length_5bpc_1_188:      equ %0010
-comms_mr2_stop_bit_length_5bpc_1_250:      equ %0011
-comms_mr2_stop_bit_length_5bpc_1_313:      equ %0100
-comms_mr2_stop_bit_length_5bpc_1_375:      equ %0101
-comms_mr2_stop_bit_length_5bpc_1_438:      equ %0110
-comms_mr2_stop_bit_length_5bpc_1_500:      equ %0111
-comms_mr2_stop_bit_length_0_563:           equ %0000
-comms_mr2_stop_bit_length_0_625:           equ %0001
-comms_mr2_stop_bit_length_0_688:           equ %0010
-comms_mr2_stop_bit_length_0_750:           equ %0011
-comms_mr2_stop_bit_length_0_813:           equ %0100
-comms_mr2_stop_bit_length_0_875:           equ %0101
-comms_mr2_stop_bit_length_0_938:           equ %0110
-comms_mr2_stop_bit_length_1_000:           equ %0111
-comms_mr2_stop_bit_length_1_563:           equ %1000
-comms_mr2_stop_bit_length_1_625:           equ %1001
-comms_mr2_stop_bit_length_1_688:           equ %1010
-comms_mr2_stop_bit_length_1_750:           equ %1011
-comms_mr2_stop_bit_length_1_813:           equ %1100
-comms_mr2_stop_bit_length_1_875:           equ %1101
-comms_mr2_stop_bit_length_1_938:           equ %1110
-comms_mr2_stop_bit_length_2_000:           equ %1111
+comms_mr2_stop_bit_length_mask:            EQU %00001111
+comms_mr2_stop_bit_length_5bpc_1_063:      EQU %0000
+comms_mr2_stop_bit_length_5bpc_1_125:      EQU %0001
+comms_mr2_stop_bit_length_5bpc_1_188:      EQU %0010
+comms_mr2_stop_bit_length_5bpc_1_250:      EQU %0011
+comms_mr2_stop_bit_length_5bpc_1_313:      EQU %0100
+comms_mr2_stop_bit_length_5bpc_1_375:      EQU %0101
+comms_mr2_stop_bit_length_5bpc_1_438:      EQU %0110
+comms_mr2_stop_bit_length_5bpc_1_500:      EQU %0111
+comms_mr2_stop_bit_length_0_563:           EQU %0000
+comms_mr2_stop_bit_length_0_625:           EQU %0001
+comms_mr2_stop_bit_length_0_688:           EQU %0010
+comms_mr2_stop_bit_length_0_750:           EQU %0011
+comms_mr2_stop_bit_length_0_813:           EQU %0100
+comms_mr2_stop_bit_length_0_875:           EQU %0101
+comms_mr2_stop_bit_length_0_938:           EQU %0110
+comms_mr2_stop_bit_length_1_000:           EQU %0111
+comms_mr2_stop_bit_length_1_563:           EQU %1000
+comms_mr2_stop_bit_length_1_625:           EQU %1001
+comms_mr2_stop_bit_length_1_688:           EQU %1010
+comms_mr2_stop_bit_length_1_750:           EQU %1011
+comms_mr2_stop_bit_length_1_813:           EQU %1100
+comms_mr2_stop_bit_length_1_875:           EQU %1101
+comms_mr2_stop_bit_length_1_938:           EQU %1110
+comms_mr2_stop_bit_length_2_000:           EQU %1111
 
 ; Clock Select Register [WO]
 ; ==========================
@@ -199,171 +199,171 @@ comms_mr2_stop_bit_length_2_000:           equ %1111
 ; e.g. to set the clockrate for the RX channel to 7200 baud,
 ; use: COMMS_RX_CLOCK_MALIGN * COMMS_CLOCKRATE_7200_BAUD (and
 ; set COMMS_ACR_BRG_SET to ACR_BRG_SET_1).
-comms_rx_clock_malign:                     equ 16
+comms_rx_clock_malign:                     EQU 16
 
 ; Multiplier for CLOCKRATE values to align with bits in
 ; clock register for TX clock.
-comms_tx_clock_malign:                     equ 1
+comms_tx_clock_malign:                     EQU 1
 
 ; Masks for the two clock settings.
-comms_rx_clock_mask:                       equ &f0
-comms_tx_clock_mask:                       equ &0f
+comms_rx_clock_mask:                       EQU &F0
+comms_tx_clock_mask:                       EQU &0F
 
 ; Baud rates:
 ; With ACR Baud Generator Set 1 (COMMS_ACR_BAUD_RATE_GENERATOR_SET_1 / ACR bit 7 = 0)
 
-comms_clockrate_50_baud:                   equ %0000
-comms_clockrate_200_baud:                  equ %0011
-comms_clockrate_1050_baud:                 equ %0111
-comms_clockrate_7200_baud:                 equ %1010
-comms_clockrate_38400_baud:                equ %1100
+comms_clockrate_50_baud:                   EQU %0000
+comms_clockrate_200_baud:                  EQU %0011
+comms_clockrate_1050_baud:                 EQU %0111
+comms_clockrate_7200_baud:                 EQU %1010
+comms_clockrate_38400_baud:                EQU %1100
 
 ; With ACR Baud Generator Set 2 (COMMS_ACR_BAUD_RATE_GENERATOR_SET_2 / ACR bit 7 = 1)
 ; (Holes are same as Set 1)
 
-comms_clockrate_75_baud:                   equ %0000
-comms_clockrate_150_baud:                  equ %0011
-comms_clockrate_2000_baud:                 equ %0111
-comms_clockrate_1800_baud:                 equ %1010
-comms_clockrate_19200_baud:                equ %1100
+comms_clockrate_75_baud:                   EQU %0000
+comms_clockrate_150_baud:                  EQU %0011
+comms_clockrate_2000_baud:                 EQU %0111
+comms_clockrate_1800_baud:                 EQU %1010
+comms_clockrate_19200_baud:                EQU %1100
 
 ; Same rate /regardless/ of ACR Baud settings
 
-comms_clockrate_110_baud:                  equ %0001
-comms_clockrate_134_5_baud:                equ %0010
-comms_clockrate_300_baud:                  equ %0100
-comms_clockrate_600_baud:                  equ %0101
-comms_clockrate_1200_baud:                 equ %0110
-comms_clockrate_2400_baud:                 equ %1000
-comms_clockrate_4800_baud:                 equ %1001
-comms_clockrate_9600_baud:                 equ %1011
+comms_clockrate_110_baud:                  EQU %0001
+comms_clockrate_134_5_baud:                EQU %0010
+comms_clockrate_300_baud:                  EQU %0100
+comms_clockrate_600_baud:                  EQU %0101
+comms_clockrate_1200_baud:                 EQU %0110
+comms_clockrate_2400_baud:                 EQU %1000
+comms_clockrate_4800_baud:                 EQU %1001
+comms_clockrate_9600_baud:                 EQU %1011
 
-comms_clockrate_timer:                     equ %1101
-comms_clockrate_mpi_16x:                   equ %1110
-comms_clockrate_mpi_1x:                    equ %1111
+comms_clockrate_timer:                     EQU %1101
+comms_clockrate_mpi_16x:                   EQU %1110
+comms_clockrate_mpi_1x:                    EQU %1111
 
 ; Command Register [WO]
 ; =====================
 
-comms_command_txrx_enable_mask:            equ %00001111
+comms_command_txrx_enable_mask:            EQU %00001111
 
 ; ENABLE/DISABLE TX and RX commands.
 ; These are weird; you can specify ENABLE/DISABLE RX
 ; and ENABLE/DISABLE TX, or even none of them.
-comms_command_rx_enable_cmd_mask:          equ %00000011
-comms_command_enable_rx:                   equ %00000001
-comms_command_disable_rx:                  equ %00000010
+comms_command_rx_enable_cmd_mask:          EQU %00000011
+comms_command_enable_rx:                   EQU %00000001
+comms_command_disable_rx:                  EQU %00000010
 
-comms_command_tx_enable_cmd_mask:          equ %00001100
-comms_command_enable_tx:                   equ %00000100
-comms_command_disable_tx:                  equ %00001000
+comms_command_tx_enable_cmd_mask:          EQU %00001100
+comms_command_enable_tx:                   EQU %00000100
+comms_command_disable_tx:                  EQU %00001000
 
-comms_misc_command_mask:                   equ %11110000
-comms_command_none:                        equ %00000000
-comms_command_reset_mr_pointer:            equ %00010000
-comms_command_reset_rx:                    equ %00100000
-comms_command_reset_tx:                    equ %00110000
-comms_command_reset_error_status:          equ %01000000
-comms_command_reset_break_change_int:      equ %01010000
-comms_command_start_break:                 equ %01100000
-comms_command_stop_break:                  equ %01110000
-comms_command_start_countertimer:          equ %10000000
-comms_command_stop_countertimer:           equ %10010000
-comms_command_assert_rtsn_low:             equ %10100000
-comms_command_negate_rtsn_high:            equ %10110000
-comms_command_reset_mpi_change_int:        equ %11000000
+comms_misc_command_mask:                   EQU %11110000
+comms_command_none:                        EQU %00000000
+comms_command_reset_mr_pointer:            EQU %00010000
+comms_command_reset_rx:                    EQU %00100000
+comms_command_reset_tx:                    EQU %00110000
+comms_command_reset_error_status:          EQU %01000000
+comms_command_reset_break_change_int:      EQU %01010000
+comms_command_start_break:                 EQU %01100000
+comms_command_stop_break:                  EQU %01110000
+comms_command_start_countertimer:          EQU %10000000
+comms_command_stop_countertimer:           EQU %10010000
+comms_command_assert_rtsn_low:             EQU %10100000
+comms_command_negate_rtsn_high:            EQU %10110000
+comms_command_reset_mpi_change_int:        EQU %11000000
 ; Note: Commands %11100000 and %11110000 are reserved.
 
 ; Status Register [RO]
 ; ====================
 
 ; Break signal was detected on the reciever
-comms_status_received_break:               equ %10000000
+comms_status_received_break:               EQU %10000000
 ; Stop bit wasn't detected at end of character
-comms_status_framing_error:                equ %01000000
+comms_status_framing_error:                EQU %01000000
 ; Parity error detected (or wake-up mode bit)
-comms_status_parity_error:                 equ %00100000
+comms_status_parity_error:                 EQU %00100000
 ; Overrun error detected (data not read quick enough)
-comms_status_overrun_error:                equ %00010000
+comms_status_overrun_error:                EQU %00010000
 ; The transmitter is ready for new data, and its queue is
 ; empty (underrun)
-comms_status_tx_empty:                     equ %00001000
+comms_status_tx_empty:                     EQU %00001000
 ; Transmitter is ready
-comms_status_tx_ready:                     equ %00000100
+comms_status_tx_ready:                     EQU %00000100
 ; The receiver FIFO queue is full. Another byte arriving
 ; in this state will cause an overrun error.
-comms_status_fifo_full:                    equ %00000010
+comms_status_fifo_full:                    EQU %00000010
 ; The receiver is ready to be read.
-comms_status_rx_ready:                     equ %00000001
+comms_status_rx_ready:                     EQU %00000001
 
 ; Auxiliary Control Register [WO]
 ; ===============================
 
-comms_acr_baud_rate_generator_set_mask:    equ %10000000
-comms_acr_baud_rate_generator_set_1:       equ %00000000
-comms_acr_baud_rate_generator_set_2:       equ %10000000
+comms_acr_baud_rate_generator_set_mask:    EQU %10000000
+comms_acr_baud_rate_generator_set_1:       EQU %00000000
+comms_acr_baud_rate_generator_set_2:       EQU %10000000
 
-comms_acr_operating_mode_mask:             equ %01110000
-comms_acr_counter_mode_clk_src_mpi:        equ %00000000
-comms_acr_counter_mode_clk_src_mpi_div_16: equ %00010000
-comms_acr_counter_mode_clk_src_tx:         equ %00100000
-comms_acr_counter_mode_clk_src_xtal_div_16:equ %00110000
-comms_acr_timer_mode_clk_src_mpi:          equ %01000000
-comms_acr_timer_mode_clk_src_mpi_div_16:   equ %01010000
-comms_acr_timer_mode_clk_src_tx:           equ %01100000
-comms_acr_timer_mode_clk_src_xtal_div_16:  equ %01110000
+comms_acr_operating_mode_mask:             EQU %01110000
+comms_acr_counter_mode_clk_src_mpi:        EQU %00000000
+comms_acr_counter_mode_clk_src_mpi_div_16: EQU %00010000
+comms_acr_counter_mode_clk_src_tx:         EQU %00100000
+comms_acr_counter_mode_clk_src_xtal_div_16:EQU %00110000
+comms_acr_timer_mode_clk_src_mpi:          EQU %01000000
+comms_acr_timer_mode_clk_src_mpi_div_16:   EQU %01010000
+comms_acr_timer_mode_clk_src_tx:           EQU %01100000
+comms_acr_timer_mode_clk_src_xtal_div_16:  EQU %01110000
 
-comms_acr_powerdown_mode_mask:             equ %00001000
-comms_acr_powerdown_mode_enable:           equ %00000000
-comms_acr_powerdown_mode_disable:          equ %00001000
+comms_acr_powerdown_mode_mask:             EQU %00001000
+comms_acr_powerdown_mode_enable:           EQU %00000000
+comms_acr_powerdown_mode_disable:          EQU %00001000
 
-comms_acr_mpo_output_select_mask:          equ %00000111
-comms_acr_mpo_rtsn:                        equ %00000000
-comms_acr_mpo_countertimer:                equ %00000001
-comms_acr_mpo_1x_tx_clock:                 equ %00000010
-comms_acr_mpo_16x_tx_clock:                equ %00000011
-comms_acr_mpo_1x_rx_clock:                 equ %00000100
-comms_acr_mpo_16x_rx_clock:                equ %00000101
-comms_acr_mpo_tx_empty_low:                equ %00000110
+comms_acr_mpo_output_select_mask:          EQU %00000111
+comms_acr_mpo_rtsn:                        EQU %00000000
+comms_acr_mpo_countertimer:                EQU %00000001
+comms_acr_mpo_1x_tx_clock:                 EQU %00000010
+comms_acr_mpo_16x_tx_clock:                EQU %00000011
+comms_acr_mpo_1x_rx_clock:                 EQU %00000100
+comms_acr_mpo_16x_rx_clock:                EQU %00000101
+comms_acr_mpo_tx_empty_low:                EQU %00000110
 ; The next two are the same value, and their meaning will
 ; depend on how MR1 was configured.
-comms_acr_mpo_rxrdy_low:                   equ %00000111
-comms_acr_mpo_fifo_low:                    equ %00000111
+comms_acr_mpo_rxrdy_low:                   EQU %00000111
+comms_acr_mpo_fifo_low:                    EQU %00000111
 
 ; Interrupt Status Register [RO]
 ; ==============================
 
-comms_isr_mpi_changed:                     equ %10000000
-comms_isr_mpi_state:                       equ %01000000
-comms_isr_counter_ready:                   equ %00010000
-comms_isr_break_changed:                   equ %00001000
+comms_isr_mpi_changed:                     EQU %10000000
+comms_isr_mpi_state:                       EQU %01000000
+comms_isr_counter_ready:                   EQU %00010000
+comms_isr_break_changed:                   EQU %00001000
 ; The next two are the same value, and their meaning will
 ; depend on how MR1 was configured.
-comms_isr_rxrdy:                           equ %00000100
-comms_isr_fifo_full:                       equ %00000100
-comms_isr_tx_empty:                        equ %00000010
-comms_isr_tx_ready:                        equ %00000001
+comms_isr_rxrdy:                           EQU %00000100
+comms_isr_fifo_full:                       EQU %00000100
+comms_isr_tx_empty:                        EQU %00000010
+comms_isr_tx_ready:                        EQU %00000001
 
 ; Interrupt Mask Register [WO]
 ; ============================
 ; note: These are the same as the ISR values for their
 ; corresponding status bits.
 
-comms_imr_mpi_changed_enable:              equ %10000000
-comms_imr_mpi_changed_disable:             equ 0
-comms_imr_mpi_state_enable:                equ %01000000
-comms_imr_mpi_state_disable:               equ 0
-comms_imr_counter_ready_enable:            equ %00010000
-comms_imr_counter_ready_disable:           equ 0
-comms_imr_break_changed_enable:            equ %00001000
-comms_imr_break_changed_disable:           equ 0
+comms_imr_mpi_changed_enable:              EQU %10000000
+comms_imr_mpi_changed_disable:             EQU 0
+comms_imr_mpi_state_enable:                EQU %01000000
+comms_imr_mpi_state_disable:               EQU 0
+comms_imr_counter_ready_enable:            EQU %00010000
+comms_imr_counter_ready_disable:           EQU 0
+comms_imr_break_changed_enable:            EQU %00001000
+comms_imr_break_changed_disable:           EQU 0
 ; The next two are the same value, and their meaning will
 ; depend on how MR1 was configured.
-comms_imr_rxrdy_enable:                    equ %00000100
-comms_imr_rxrdy_disable:                   equ 0
-comms_imr_fifo_full_enable:                equ %00000100
-comms_imr_fifo_full_disable:               equ 0
-comms_imr_tx_empty_enable:                 equ %00000010
-comms_imr_tx_empty_disable:                equ 0
-comms_imr_tx_ready_enable:                 equ %00000001
-comms_imr_tx_ready_disable:                equ 0
+comms_imr_rxrdy_enable:                    EQU %00000100
+comms_imr_rxrdy_disable:                   EQU 0
+comms_imr_fifo_full_enable:                EQU %00000100
+comms_imr_fifo_full_disable:               EQU 0
+comms_imr_tx_empty_enable:                 EQU %00000010
+comms_imr_tx_empty_disable:                EQU 0
+comms_imr_tx_ready_enable:                 EQU %00000001
+comms_imr_tx_ready_disable:                EQU 0

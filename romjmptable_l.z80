@@ -1,0 +1,59 @@
+; The SAM BASIC Jump Table routine entry points.
+
+; Author: Simon Cooke (spectecjr@gmail.com)
+; Licensed under the MIT license (see LICENSE file).
+
+; JSCRN: Select screen held in the C register (1-16).
+; Equivalent to Basic's SCREEN command. An error is generated if the
+; screen is not open. This Jump Table entry is not available in v1.0 of the
+; ROM.
+
+rom_jscrn:      EQU &0100
+
+rom_jsvin:      EQU &0103
+rom_jheaproom:  EQU &0106
+rom_jwkroom:    EQU &0109
+rom_jmkrbig:    EQU &010C
+rom_jcallbas:   EQU &010F
+rom_jsetstrm:   EQU &0112
+rom_jpomsg:     EQU &0115
+rom_jexpt1num:  EQU &0118
+rom_jexptstr:   EQU &0116
+rom_jexptexpr:  EQU &011E
+rom_jgetint:    EQU &0121
+rom_jstkfetch:  EQU &0124
+rom_jstkstore:  EQU &0127
+rom_jsbuffer:   EQU &012A
+rom_jfarldir:   EQU &012D
+rom_jfarlldr:   EQU &0130
+rom_jput:       EQU &0133
+rom_jgrab:      EQU &0136
+rom_jplot:      EQU &0139
+rom_jdraw:      EQU &013C
+rom_jdrawto:    EQU &013F
+rom_jcircle:    EQU &0142
+rom_jfill:      EQU &0145
+rom_jblitz:     EQU &0148
+rom_jroll:      EQU &014B
+rom_jclsbl:     EQU &014E
+rom_jclslower:  EQU &0151
+rom_jpalet:     EQU &0154
+rom_jopscr:     EQU &0157
+rom_jmode:      EQU &015A
+rom_jtdump:     EQU &015D
+rom_jgdump:     EQU &0160
+rom_jreclaim:   EQU &0163
+rom_jkbflush:   EQU &0166
+rom_jreadkey:   EQU &0169
+rom_jwaitkey:   EQU &016C
+rom_jbeep:      EQU &016F
+rom_jsave:      EQU &0172
+rom_jload:      EQU &0175
+rom_jldvd:      EQU &0178
+rom_jedge2:     EQU &017B
+rom_jstrs:      EQU &017E
+rom_jsenda:     EQU &0181
+rom_jnchar:     EQU &0184
+rom_jgrcomp:    EQU &0187
+rom_jgttok:     EQU &018A
+rom_jclscr:     EQU &018D

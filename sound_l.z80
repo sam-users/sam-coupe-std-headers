@@ -7,128 +7,128 @@
 ; Datasheet: http://www.vgmpf.com/Wiki/images/1/19/SAA1099_-_Manual_-_1984.pdf
 
 
-sound_data:                       equ 255 ; [Write Only]
-sound_address:                    equ 511
+sound_data:                       EQU 255 ; [Write Only]
+sound_address:                    EQU 511
 
 ; Number of bytes needed to store copies of all sound registers except
 ; sound enable.
-sound_data_size:                  equ &20
+sound_data_size:                  EQU &20
 
 ; Sound registers
 ; ===============
 
-sound_osc0_amplitude:             equ &00
-sound_osc1_amplitude:             equ &01
-sound_osc2_amplitude:             equ &02
-sound_osc3_amplitude:             equ &03
-sound_osc4_amplitude:             equ &04
-sound_osc5_amplitude:             equ &05
-sound_unused_1:                   equ &06
-sound_unused_2:                   equ &07
-sound_osc0_freq:                  equ &08
-sound_osc1_freq:                  equ &09
-sound_osc2_freq:                  equ &0a
-sound_osc3_freq:                  equ &0b
-sound_osc4_freq:                  equ &0c
-sound_osc5_freq:                  equ &0d
-sound_unused_3:                   equ &0e
-sound_unused_4:                   equ &0f
-sound_osc10_octaves:              equ &10
-sound_osc32_octaves:              equ &11
-sound_osc54_octaves:              equ &12
-sound_unused_5:                   equ &13
-sound_freq_enable:                equ &14
-sound_noise_enable:               equ &15
-sound_noise_generators:           equ &16
-sound_unused_6:                   equ &17
-sound_env_generator_0:            equ &18
-sound_env_generator_1:            equ &19
-sound_unused_7:                   equ &1a
-sound_unused_8:                   equ &1b
+sound_osc0_amplitude:             EQU &00
+sound_osc1_amplitude:             EQU &01
+sound_osc2_amplitude:             EQU &02
+sound_osc3_amplitude:             EQU &03
+sound_osc4_amplitude:             EQU &04
+sound_osc5_amplitude:             EQU &05
+sound_unused_1:                   EQU &06
+sound_unused_2:                   EQU &07
+sound_osc0_freq:                  EQU &08
+sound_osc1_freq:                  EQU &09
+sound_osc2_freq:                  EQU &0A
+sound_osc3_freq:                  EQU &0B
+sound_osc4_freq:                  EQU &0C
+sound_osc5_freq:                  EQU &0D
+sound_unused_3:                   EQU &0E
+sound_unused_4:                   EQU &0F
+sound_osc10_octaves:              EQU &10
+sound_osc32_octaves:              EQU &11
+sound_osc54_octaves:              EQU &12
+sound_unused_5:                   EQU &13
+sound_freq_enable:                EQU &14
+sound_noise_enable:               EQU &15
+sound_noise_generators:           EQU &16
+sound_unused_6:                   EQU &17
+sound_env_generator_0:            EQU &18
+sound_env_generator_1:            EQU &19
+sound_unused_7:                   EQU &1A
+sound_unused_8:                   EQU &1B
 ; Sound enable register also handles freq. generator sync/reset - see datasheet
-sound_enable:                     equ &1c 
+sound_enable:                     EQU &1C
 
 ; These apply to SOUND_OSCn_AMPLITUDE channels
-sound_amplitude_left_mask:         equ %00001111
-sound_amplitude_right_mask:        equ %11110000
+sound_amplitude_left_mask:         EQU %00001111
+sound_amplitude_right_mask:        EQU %11110000
 
 ; Min/max volume value range.
-sound_amplitude_min:               equ &00
-sound_amplitude_max:               equ &0f
+sound_amplitude_min:               EQU &00
+sound_amplitude_max:               EQU &0F
 
 ; Multiply values by this to align with right channel bits
-sound_amplitude_right_malign:      equ 16
+sound_amplitude_right_malign:      EQU 16
 ; Shift values left by this to align with right channel bits
-sound_amplitude_right_leftshift:   equ 4
+sound_amplitude_right_leftshift:   EQU 4
 
 ; Multiply values by this to align with left channel bits
-sound_amplitude_left_malign:       equ 1
+sound_amplitude_left_malign:       EQU 1
 ; Shift values left by this to align with left channel bits
-sound_amplitude_left_leftshift:    equ 0
+sound_amplitude_left_leftshift:    EQU 0
 
-sound_octave_min:                  equ 0
-sound_octave_max:                  equ 7
+sound_octave_min:                  EQU 0
+sound_octave_max:                  EQU 7
 
-sound_freq_enable_mask:            equ %00111111
-sound_freq_enable_ch5:             equ %00100000
-sound_freq_enable_ch4:             equ %00010000
-sound_freq_enable_ch3:             equ %00001000
-sound_freq_enable_ch2:             equ %00000100
-sound_freq_enable_ch1:             equ %00000010
-sound_freq_enable_ch0:             equ %00000001
+sound_freq_enable_mask:            EQU %00111111
+sound_freq_enable_ch5:             EQU %00100000
+sound_freq_enable_ch4:             EQU %00010000
+sound_freq_enable_ch3:             EQU %00001000
+sound_freq_enable_ch2:             EQU %00000100
+sound_freq_enable_ch1:             EQU %00000010
+sound_freq_enable_ch0:             EQU %00000001
 
-sound_noise_enable_mask:           equ %00111111
-sound_noise_enable_ch5:            equ %00100000
-sound_noise_enable_ch4:            equ %00010000
-sound_noise_enable_ch3:            equ %00001000
-sound_noise_enable_ch2:            equ %00000100
-sound_noise_enable_ch1:            equ %00000010
-sound_noise_enable_ch0:            equ %00000001
+sound_noise_enable_mask:           EQU %00111111
+sound_noise_enable_ch5:            EQU %00100000
+sound_noise_enable_ch4:            EQU %00010000
+sound_noise_enable_ch3:            EQU %00001000
+sound_noise_enable_ch2:            EQU %00000100
+sound_noise_enable_ch1:            EQU %00000010
+sound_noise_enable_ch0:            EQU %00000001
 
 ; Noise generator frequency for channels 0, 1, 2
-sound_noise_gen_0_mask:            equ %00000011
-sound_noise_gen_0_31300_hz:        equ %00000000
-sound_noise_gen_0_15600_hz:        equ %00000001
-sound_noise_gen_0_7600_hz:         equ %00000010
-sound_noise_gen_0_2x_freq_osc0:    equ %00000011
+sound_noise_gen_0_mask:            EQU %00000011
+sound_noise_gen_0_31300_hz:        EQU %00000000
+sound_noise_gen_0_15600_hz:        EQU %00000001
+sound_noise_gen_0_7600_hz:         EQU %00000010
+sound_noise_gen_0_2x_freq_osc0:    EQU %00000011
 
 ; Noise generator frequency for channels 3, 4, 5
-sound_noise_gen_1_mask:            equ %00110000
-sound_noise_gen_1_31300_hz:        equ %00000000
-sound_noise_gen_1_15600_hz:        equ %00010000
-sound_noise_gen_1_7600_hz:         equ %00100000
-sound_noise_gen_1_2x_freq_osc2:    equ %00110000
+sound_noise_gen_1_mask:            EQU %00110000
+sound_noise_gen_1_31300_hz:        EQU %00000000
+sound_noise_gen_1_15600_hz:        EQU %00010000
+sound_noise_gen_1_7600_hz:         EQU %00100000
+sound_noise_gen_1_2x_freq_osc2:    EQU %00110000
 
-sound_envelope_shape_mask:         equ %00001110
-sound_envelope_zero:               equ %00000000 ; >________
-sound_envelope_max:                equ %00000010 ; >̅ ̅ ̅ ̅
-sound_envelope_single_decay:       equ %00000100 ; >|\______
-sound_envelope_repeat_decay:       equ %00000110 ; >|\|\|\|\
-sound_envelope_single_triangle:    equ %00001000 ; >/\______
-sound_envelope_repeat_triangle:    equ %00001010 ; >/\/\/\/\
-sound_envelope_single_attack:      equ %00001100 ; >/|______
-sound_envelope_repeat_attack:      equ %00001110 ; >/|/|/|/|
+sound_envelope_shape_mask:         EQU %00001110
+sound_envelope_zero:               EQU %00000000 ; >________
+sound_envelope_max:                EQU %00000010 ; >̅ ̅ ̅ ̅
+sound_envelope_single_decay:       EQU %00000100 ; >|\______
+sound_envelope_repeat_decay:       EQU %00000110 ; >|\|\|\|\
+sound_envelope_single_triangle:    EQU %00001000 ; >/\______
+sound_envelope_repeat_triangle:    EQU %00001010 ; >/\/\/\/\
+sound_envelope_single_attack:      EQU %00001100 ; >/|______
+sound_envelope_repeat_attack:      EQU %00001110 ; >/|/|/|/|
 
-sound_env_lr_inverse_mask:         equ %00000001
-sound_env_right_is_inverse_left:   equ %00000001
-sound_env_right_left_same:         equ %00000000
+sound_env_lr_inverse_mask:         EQU %00000001
+sound_env_right_is_inverse_left:   EQU %00000001
+sound_env_right_left_same:         EQU %00000000
 
-sound_env_bit_env_resolution_mask: equ %00010000
-sound_env_4bit_env_resolution:     equ %00000000 ; Max Frequency 976Hz
-sound_env_3bit_env_resolution:     equ %00010000 ; Max Frequency 19500Hz
+sound_env_bit_env_resolution_mask: EQU %00010000
+sound_env_4bit_env_resolution:     EQU %00000000 ; Max Frequency 976Hz
+sound_env_3bit_env_resolution:     EQU %00010000 ; Max Frequency 19500Hz
 
-sound_env_envelope_clock_mask:     equ %00100000
-sound_env_envelope_clock_internal: equ %00000000 ; Frequency generator 1 (env 0) or 4 (env 1)
-sound_env_envelope_clock_external: equ %00100000 ; Use Address Write Pulse
+sound_env_envelope_clock_mask:     EQU %00100000
+sound_env_envelope_clock_internal: EQU %00000000 ; Frequency generator 1 (env 0) or 4 (env 1)
+sound_env_envelope_clock_external: EQU %00100000 ; Use Address Write Pulse
 
-sound_envelope_enable_mask:        equ %10000000
-sound_envelope_enabled:            equ %10000000
-sound_envelope_disabled:           equ 0
+sound_envelope_enable_mask:        EQU %10000000
+sound_envelope_enabled:            EQU %10000000
+sound_envelope_disabled:           EQU 0
 
-sound_enable_mask:                 equ %00000001
-sound_enable_on:                   equ %00000001 ; Master sound output enabled.
-sound_enable_off:                  equ 0         ; Master sound output disabled.
+sound_enable_mask:                 EQU %00000001
+sound_enable_on:                   EQU %00000001 ; Master sound output enabled.
+sound_enable_off:                  EQU 0         ; Master sound output disabled.
 
-sound_freq_generator_mask:         equ %00000010
-sound_freq_generator_reset:        equ %00000010 ; Resets and synchronizes frequency generators. 
-sound_freq_generator_enable:       equ 0         ; Enables frequency generators to run freely.
+sound_freq_generator_mask:         EQU %00000010
+sound_freq_generator_reset:        EQU %00000010 ; Resets and synchronizes frequency generators.
+sound_freq_generator_enable:       EQU 0         ; Enables frequency generators to run freely.

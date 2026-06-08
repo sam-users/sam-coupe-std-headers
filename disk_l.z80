@@ -4,98 +4,98 @@
 ; Author: Simon Cooke (spectecjr@gmail.com)
 ; Licensed under the MIT license (see LICENSE file).
 
-disk_0_base:                                 equ 224
-disk_1_base:                                 equ 240
+disk_0_base:                                 EQU 224
+disk_1_base:                                 EQU 240
 
-disk_status:                                 equ 0
-disk_command:                                equ 0
-disk_track:                                  equ 1
-disk_sector:                                 equ 2
-disk_data:                                   equ 3
-disk_side_2:                                 equ 4
+disk_status:                                 EQU 0
+disk_command:                                EQU 0
+disk_track:                                  EQU 1
+disk_sector:                                 EQU 2
+disk_data:                                   EQU 3
+disk_side_2:                                 EQU 4
 
-disk_0_status:                               equ disk_0_base + disk_status
-disk_0_command:                              equ disk_0_base + disk_command
-disk_0_track:                                equ disk_0_base + disk_track
-disk_0_sector:                               equ disk_0_base + disk_sector
-disk_0_data:                                 equ disk_0_base + disk_data
+disk_0_status:                               EQU disk_0_base + disk_status
+disk_0_command:                              EQU disk_0_base + disk_command
+disk_0_track:                                EQU disk_0_base + disk_track
+disk_0_sector:                               EQU disk_0_base + disk_sector
+disk_0_data:                                 EQU disk_0_base + disk_data
 
-disk_1_status:                               equ disk_1_base + disk_status
-disk_1_command:                              equ disk_1_base + disk_command
-disk_1_track:                                equ disk_1_base + disk_track
-disk_1_sector:                               equ disk_1_base + disk_sector
-disk_1_data:                                 equ disk_1_base + disk_data
+disk_1_status:                               EQU disk_1_base + disk_status
+disk_1_command:                              EQU disk_1_base + disk_command
+disk_1_track:                                EQU disk_1_base + disk_track
+disk_1_sector:                               EQU disk_1_base + disk_sector
+disk_1_data:                                 EQU disk_1_base + disk_data
 
 ; VL1772-02 Disk Controller Commands
 ; Datasheet: https://datasheetspdf.com/datasheet/VL1772-02.html
 
-disk_command_mask:                           equ %11110000
+disk_command_mask:                           EQU %11110000
 
 ; Type I commands
-disk_cmd_restore:                            equ %00000000
-disk_cmd_seek:                               equ %00010000
+disk_cmd_restore:                            EQU %00000000
+disk_cmd_seek:                               EQU %00010000
 
 ; Type I Stepping Commands
-disk_cmd_step:                               equ %00100000
-disk_cmd_step_in:                            equ %01000000
-disk_cmd_step_out:                           equ %01100000
+disk_cmd_step:                               EQU %00100000
+disk_cmd_step_in:                            EQU %01000000
+disk_cmd_step_out:                           EQU %01100000
 
 ; Stepping rate for type I commands:
-disk_cmd_stepping_rate_mask:                 equ %00000011
+disk_cmd_stepping_rate_mask:                 EQU %00000011
 
-disk_cmd_stepping_rate_6ms:                  equ %00000000
-disk_cmd_stepping_rate_12ms:                 equ %00000001
-disk_cmd_stepping_rate_2ms:                  equ %00000010
+disk_cmd_stepping_rate_6ms:                  EQU %00000000
+disk_cmd_stepping_rate_12ms:                 EQU %00000001
+disk_cmd_stepping_rate_2ms:                  EQU %00000010
 ; NOTE: SAM Drives support 3ms (according to SAMDOS2)
-disk_cmd_stepping_rate_3ms:                  equ %00000011
+disk_cmd_stepping_rate_3ms:                  EQU %00000011
 
 ; Type 1,2,3 Command Spin-Up flags
-disk_cmd_enable_spin_up_sequence:            equ 0
-disk_cmd_disable_spin_up_sequence:           equ %00001000
+disk_cmd_enable_spin_up_sequence:            EQU 0
+disk_cmd_disable_spin_up_sequence:           EQU %00001000
 
 ; Type 1 Track Verify flags
-disk_cmd_type1_verify_track_disabled:        equ 0
-disk_cmd_type1_verify_track_enabled:         equ %00000100
+disk_cmd_type1_verify_track_disabled:        EQU 0
+disk_cmd_type1_verify_track_enabled:         EQU %00000100
 
-disk_cmd_update_track_register_on_step:      equ %00010000
-disk_cmd_dont_update_track_register_on_step: equ %00000000
+disk_cmd_update_track_register_on_step:      EQU %00010000
+disk_cmd_dont_update_track_register_on_step: EQU %00000000
 
-disk_cmd_read_sector:                        equ %10000000
-disk_cmd_read_multi_sector:                  equ %10001000
+disk_cmd_read_sector:                        EQU %10000000
+disk_cmd_read_multi_sector:                  EQU %10001000
 
-disk_cmd_write_sector:                       equ %10100000
-disk_cmd_write_multi_sector:                 equ %10110000
+disk_cmd_write_sector:                       EQU %10100000
+disk_cmd_write_multi_sector:                 EQU %10110000
 
-disk_cmd_type2_15ms_settling_delay:          equ %00000100
-disk_cmd_type2_no_settling_delay:            equ %00000000
+disk_cmd_type2_15ms_settling_delay:          EQU %00000100
+disk_cmd_type2_no_settling_delay:            EQU %00000000
 
-disk_cmd_enable_write_precomp:               equ %00000010
-disk_cmd_disable_write_precomp:              equ 0
+disk_cmd_enable_write_precomp:               EQU %00000010
+disk_cmd_disable_write_precomp:              EQU 0
 
-disk_cmd_write_sector_mark_valid:            equ %00000000
-disk_cmd_write_sector_mark_deleted:          equ %00000001
+disk_cmd_write_sector_mark_valid:            EQU %00000000
+disk_cmd_write_sector_mark_deleted:          EQU %00000001
 
 ; Type III Commands
-disk_cmd_read_address:                       equ %11000000
-disk_cmd_read_track:                         equ %11100000
-disk_cmd_write_track:                        equ %11110000
+disk_cmd_read_address:                       EQU %11000000
+disk_cmd_read_track:                         EQU %11100000
+disk_cmd_write_track:                        EQU %11110000
 
 ; Type IV Commands
-disk_cmd_terminate_no_interrupt:             equ %11010000
-disk_cmd_interrupt_on_index_pulse:           equ %11010100
-disk_cmd_immediate_interrupt:                equ %11011000
+disk_cmd_terminate_no_interrupt:             EQU %11010000
+disk_cmd_interrupt_on_index_pulse:           EQU %11010100
+disk_cmd_immediate_interrupt:                EQU %11011000
 
 ; Status bits
-disk_status_motor_on:                        equ %10000000
-disk_status_write_protect:                   equ %01000000
-disk_status_record_type:                     equ %00100000
-disk_status_record_deleted:                  equ %00100000
-disk_status_record_valid:                    equ %00000000
-disk_status_spin_up:                         equ %00100000
-disk_status_record_not_found:                equ %00010000
-disk_status_crc_error:                       equ %00001000
-disk_status_lost_data:                       equ %00000100
-disk_status_track_zero:                      equ %00000100
-disk_status_data_ready:                      equ %00000010 ; Data Request Index
-disk_status_index_pulse:                     equ %00000010
-disk_status_busy:                            equ %00000001 ; Command is running
+disk_status_motor_on:                        EQU %10000000
+disk_status_write_protect:                   EQU %01000000
+disk_status_record_type:                     EQU %00100000
+disk_status_record_deleted:                  EQU %00100000
+disk_status_record_valid:                    EQU %00000000
+disk_status_spin_up:                         EQU %00100000
+disk_status_record_not_found:                EQU %00010000
+disk_status_crc_error:                       EQU %00001000
+disk_status_lost_data:                       EQU %00000100
+disk_status_track_zero:                      EQU %00000100
+disk_status_data_ready:                      EQU %00000010 ; Data Request Index
+disk_status_index_pulse:                     EQU %00000010
+disk_status_busy:                            EQU %00000001 ; Command is running

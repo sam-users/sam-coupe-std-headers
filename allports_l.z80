@@ -6,13 +6,13 @@
 ; Author: Simon Cooke (spectecjr@gmail.com)
 ; Licensed under the MIT license (see LICENSE file).
 
-include "base_l.z80"
-include "colours_l.z80"
-include "comms_l.z80"
-include "disk_l.z80"
-include "joystick_l.z80"
-include "keyboard_l.z80"
-include "lightpen_l.z80"
-include "sound_l.z80"
-include "externalmemory_l.z80"
-include "realtimeclock_l.z80"
+INCLUDE "base.z80"
+INCLUDE "colours.z80"
+INCLUDE "comms.z80"
+INCLUDE "disk.z80"
+INCLUDE "joystick.z80"
+INCLUDE "keyboard.z80"
+INCLUDE "lightpen.z80"
+INCLUDE "sound.z80"
+INCLUDE "externalmemory.z80"
+INCLUDE "realtimeclock.z80"

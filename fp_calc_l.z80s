@@ -1,0 +1,203 @@
+; SAM Coupé Floating Point Calculator Command codes
+; All are of the form: FP_xxx
+;
+; Copyright (c) 2026 Simon Cooke
+
+; Note: When parameters are listed, they are stacked as follows:
+;
+; TOP OF STACK = N2
+;              = N1
+
+fp_mult:                    EQU &00 ; N1 * N2
+fp_add:                     EQU &01 ; N1 + N2
+
+; The concatenated text is stored in the workspace, and
+; then the reference to that temporary string is stacked.
+fp_concat:                  EQU &02 ; $1 + $2
+fp_sub:                     EQU &03 ; N1 - N2
+fp_pow:                     EQU &04 ; N1 ^ N2
+fp_div:                     EQU &05 ; N1 / N2
+fp_swap:                    EQU &06 ; Swap V1, V2
+fp_drop:                    EQU &07 ; Discard Top of Stack value
+fp_mod:                     EQU &08 ; N1 % N2
+fp_integer_div:             EQU &09 ; N1 DIV N2
+fp_binary_or:               EQU &0A ; N1 BOR N2
+; FP_BXOR:                  EQU &0B ; Not implemented in ROM 
+fp_binary_and:              EQU &0C ; N1 BAND N2
+fp_logical_or:              EQU &0D ; N1 OR N2
+fp_logical_and:             EQU &0E ; N1 AND N2 
+fp_num_not_equal:           EQU &0F ; N1 <> N2
+fp_num_less_or_equal:       EQU &10 ; N1 <= N2
+fp_num_greater_or_equal:    EQU &11 ; N1 >= N2 
+fp_num_less_than:           EQU &12 ; N1 < N2 
+fp_num_equal:               EQU &13 ; N1 == N2 
+fp_num_greater_than:        EQU &14 ; N1 > N2 
+fp_str_logical_and_num:     EQU &15 ; $1 AND N2 - returns $1 if N2 <> 0, or empty string if N2 == 0
+fp_str_not_equal:           EQU &16 ; $1 <> $2 
+fp_str_less_or_equal:       EQU &17 ; $1 <= $
+fp_str_greater_or_equal:    EQU &18 ; $1 >= $2 
+fp_str_less_than:           EQU &19 ; $1 < $2 
+fp_str_equal:               EQU &1A ; $1 == $2 
+fp_str_greater_than:        EQU &1B ; $1 > $2 
+fp_swap_1_with_3:           EQU &1C ; Swap last value with value 2 below
+fp_swap_2_with_3:           EQU &1D ; Swap second-to-last value with value below
+fp_jump_true:               EQU &1E ; Pops the last value off the stack. If it's 1, jump by displacement in next byte.
+fp_jump_false:              EQU &1F ; Pops the last value off the stack. If it's 0, jump by displacement in next byte.
+fp_jump:                    EQU &20 ; Jumps by the displacement given in next byte.
+
+; The calculator has a special store called BREG that initially holds
+; whatever the Z80's B register did when the calculator was called. The
+; four command codes below use BREG. 
+
+fp_ldbreg:                  EQU &21 ; Load BREG with ext byte.
+fp_dec_b:                   EQU &22 ; Decrememt BREG and jump by the displacement in the next byte if BREG is non-zero.
+fp_stk_breg:                EQU &23 ; put BREG on the stack as a number from 0-255.
+fp_useb:                    EQU &24 ; Take the next calculator code from BREG.
+
+fp_dup:                     EQU &25 ; Duplicate the top FPCS entry
+
+fp_byte_literal:            EQU &26 ; Stacks the next byte as a number from 0-255.
+fp_onelit:                  EQU fp_byte_literal ; see above
+
+fp_5byte_literal:           EQU &27; Stack the next 5 bytes on FPCS as a single 5-byte literal.
+fp_fivelit:                 EQU fp_5byte_literal
+
+fp_multiple_literals:       EQU &28 ; Stack number of bytes specified by next byte, using
+                                    ; (next byte+1} as the first byte. (This allows many 5-
+                                    ; byte values to be stacked at once). 
+fp_somelit:                 EQU fp_multiple_literals
+
+fp_lookup_addr_byte:        EQU &29 ; Uses the next two bytes as an address (ADDRL, ADDRH), and pushes
+                                    ; the byte found at that address on the top of the FPCS.
+fp_lkaddrb:                 EQU fp_lookup_addr_byte
+
+fp_lookup_addr_word:        EQU &2A ; Uses the next two bytes as an address (ADDRL, ADDRH), and pushes
+                                    ; the word found at that address on the top of the FPCS.
+fp_lkaddrw:                 EQU fp_lookup_addr_word
+
+fp_redarg:                  EQU &2B ; Folds angle (in radians) on the unit circle to range -pi to pi degrees (used by SIN, COS, TAN)
+
+fp_less_than_0:             EQU &2C ; Pop last value. Stack 1 (true) if it is < 0, 0 (false) otherwise.
+fp_less_or_equal_to_0:      EQU &2D ; Pop last value. Stack 1 (true) if it is <= 0, 0 (false) otherwise.
+fp_greater_than_0:          EQU &2E ; Pop last value. Stack 1 (true) if it is > 0, 0 (false) otherwise.
+fp_greater_or_equal_to_0:   EQU &2F ; Pop last value. Stack 1 (true) if it is >= 0, 0 (false) otherwise.
+
+fp_trunc:                   EQU &30 ; Take floor of N1
+fp_normalize_5byte_form:    EQU &31 ; Transform top of stack to 5-byte form if it's not already in that form. 
+fp_restack:                 EQU FP_NORMALIZE_5BYTE
+fp_pow_2:                   EQU &32 ; Calculate 2 ^ N1
+fp_exit:                    EQU &33 ; Finishes using the floating point calculator and continues.
+fp_exit_and_ret:            EQU &34 ; Finishes using the calculator, and do a RET
+fp_exit2:                   EQU fp_exit_and_ret
+
+; FP_UNUSED_1:              EQU &35
+; FP_UNUSED_2:              EQU &36
+; FP_UNUSED_3:              EQU &37
+; FP_UNUSED_4:              EQU &38
+
+fp_sin:                     EQU &39
+fp_cos:                     EQU &3A
+fp_tan:                     EQU &3B
+fp_asn:                     EQU &3C
+fp_acs:                     EQU &3D
+fp_atn:                     EQU &3E
+fp_logn:                    EQU &3F
+fp_exp:                     EQU &40
+fp_abs:                     EQU &41
+fp_sgn:                    EQU &42
+fp_sqr:                     EQU &43
+fp_int:                     EQU &44
+fp_usr:                     EQU &45
+fp_in:                      EQU &46
+fp_peek:                    EQU &47
+fp_dpeek:                   EQU &48
+fp_dvar:                    EQU &49
+fp_svar:                    EQU &4A
+fp_button:                  EQU &4B
+fp_eof:                     EQU &4C
+fp_ptr:                     EQU &4D
+; FP_UNUSED_5:              EQU &4E 
+fp_udg:                     EQU &4F
+; FP_UNUSED_6:              EQU &50
+fp_len:                     EQU &51
+fp_code:                    EQU &52
+fp_vals:                    EQU &53
+fp_val:                     EQU &54
+fp_truncs:                  EQU &55
+fp_chrs:                    EQU &56
+fp_strs:                    EQU &57
+fp_bins:                    EQU &58
+fp_hexs:                    EQU &59
+fp_usrs:                    EQU &5A
+fp_inkeys:                  EQU &5B
+fp_not:                     EQU &5C 
+fp_negate:                  EQU &5D
+
+
+; The calculator has six 5-byte memories for holding temporary results.
+; The following codes store and recall the memories:
+
+fp_stod0:                   EQU &0C8 ; STOD0 Copy the last value to calculator memory 0, then delete it from the FPCS.
+fp_pop_store_mem0:          EQU fp_stod0
+fp_stod1:                   EQU &0C9 ; STOD1 Copy the last value to calculator memory 1, then delete it from the FPCS. 
+fp_pop_store_mem1:          EQU fp_stod1
+fp_stod2:                   EQU &0CA ; STOD2 Copy the last value to calculator memory 2, then delete it from the FPCS.
+fp_pop_store_mem2:          EQU fp_stod2
+fp_stod3:                   EQU &0CB ; STOD3 Copy the last value to calculator memory 3, then delete it from the FPCS.
+fp_pop_store_mem3:          EQU fp_stod3
+fp_stod4:                   EQU &0CC ; STOD4 Copy the last value to calculator memory 4, then delete it from the FPCS.
+fp_pop_store_mem4:          EQU fp_stod4
+fp_stod5:                   EQU &0CD ; STOD5 Copy the last value to calculator memory 5, then delete it from the FPCS.
+fp_pop_store_mem5:          EQU fp_stod5
+
+; STOD5 isn't in the SAM ROM Source, BUT, it's the same routine as STO5, which is.
+; and the routine looks for it, so its omission is just an oversight.
+; While the FPC allows STOD6-7 as valid calculator commands, there's no space for them
+; in the default location pointed to by MEMVAL - there's only space for 6 * 5-byte values.
+
+fp_sto0:                    EQU &0D0 ; Same as above but doesn't delete the top value from the FPCS afterwards.
+fp_copy_to_mem0:            EQU fp_stod0
+
+fp_sto1:                    EQU &0D1 
+fp_copy_to_mem1:            EQU fp_stod1
+
+fp_sto2:                    EQU &0D2
+fp_copy_to_mem2:            EQU fp_stod2
+
+fp_sto3:                    EQU &0D3
+fp_copy_to_mem3:            EQU fp_stod3
+
+fp_sto4:                    EQU &0D4
+fp_copy_to_mem4:            EQU fp_stod4
+
+fp_sto5:                    EQU &0D5
+fp_copy_to_mem5:            EQU fp_stod5
+
+; Stack the value in calculator memory 0-5 on the FPCS.
+fp_rcl0:                    EQU &0D8
+fp_push_mem0:               EQU fp_rcl0
+
+fp_rcl1:                    EQU &0D9
+fp_push_mem1:               EQU fp_rcl1
+
+fp_rcl2:                    EQU &0DA
+fp_push_mem2:               EQU fp_rcl2
+
+fp_rcl3:                    EQU &0DB
+fp_push_mem3:               EQU fp_rcl3
+
+fp_rcl4:                    EQU &0DC
+fp_push_mem4:               EQU fp_rcl4
+
+fp_rcl5:                    EQU &0DD
+fp_push_mem5:               EQU fp_rcl5
+
+; Stack constant literals on the FPCS.
+
+fp_stack_half:              EQU &0E0 ; Stack 0.5
+fp_stack_zero:              EQU &0E1 ; Stack 0
+fp_stack_16k:               EQU &0E2 ; Stack 16384
+fp_stack_fb_one:            EQU &0E6 ; Stack 5-byte form of 1
+fp_stack_one:               EQU &0E9 ; Stack integer form of 1
+fp_stack_ten:               EQU &0EC ; Stack 10
+fp_stack_half_pi:           EQU &0F0 ; Stack PI/2

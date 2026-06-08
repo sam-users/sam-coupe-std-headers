@@ -18,87 +18,87 @@
 ; Author: Simon Cooke (spectecjr@gmail.com)
 ; Licensed under the MIT license (see LICENSE file).
 
-rtc_base:                     equ 239
+rtc_base:                     EQU 239
 
 ; The OKI M6242B only reads back 4 data bits. The upper 4 bits are floating.
-rtc_read_mask:                equ %00001111
+rtc_read_mask:                EQU %00001111
 
-rtc_seconds_1s:               equ rtc_base + (0*256)
-rtc_seconds_1s_h:             equ 0
-rtc_seconds_10s:              equ rtc_base + (1*256)
-rtc_seconds_10s_h:            equ 1
+rtc_seconds_1s:               EQU rtc_base + (0*256)
+rtc_seconds_1s_h:             EQU 0
+rtc_seconds_10s:              EQU rtc_base + (1*256)
+rtc_seconds_10s_h:            EQU 1
 
 ; Note: If you use RTC_READ_MASK, you don't need to use RTC_SECONDS_10S_MASK as well;
 ; all unused bits are read back as 0, and are ignored on write.
-rtc_seconds_10s_mask:         equ %00000111
-rtc_minutes_1s:               equ rtc_base + (2*256)
-rtc_minutes_1s_h:             equ 2
-rtc_minutes_10s:              equ rtc_base + (3*256)
-rtc_minutes_10s_h:            equ 3
-rtc_minutes_10s_mask:         equ %00000111
-rtc_hours_1s:                 equ rtc_base + (4*256)
-rtc_hours_1s_h:               equ 4
-rtc_hours_10s:                equ rtc_base + (5*256)
-rtc_hours_10s_h:              equ 5
-rtc_hours_10s_mask:           equ %00000011
-rtc_hours_10s_ampm:           equ %00000100
-rtc_hours_10s_ampm_bix:       equ 2
-rtc_hours_is_am:              equ 0
-rtc_hours_is_pm:              equ rtc_hours_10s_ampm
-rtc_days_1s:                  equ rtc_base + (6*256)
-rtc_days_1s_h:                equ 6
-rtc_days_10s:                 equ rtc_base + (7*256)
-rtc_days_10s_h:               equ 7
-rtc_days_10s_mask:            equ %00000011
-rtc_months_1s:                equ rtc_base + (8*256)
-rtc_months_1s_h:              equ 8
-rtc_months_10s:               equ rtc_base + (9*256)
-rtc_months_10s_h:             equ 9
-rtc_months_10s_mask:          equ %00000001
-rtc_years_1s:                 equ rtc_base + (10*256)
-rtc_years_1s_h:               equ 10
-rtc_years_10s:                equ rtc_base + (11*256)
-rtc_years_10s_h:              equ 11
-rtc_weekday:                  equ rtc_base + (12*256)
-rtc_weekday_h:                equ 12
-rtc_weekday_mask:             equ %00000111
-rtc_weekday_sunday:           equ 0
-rtc_weekday_monday:           equ 1
-rtc_weekday_tuesday:          equ 2
-rtc_weekday_wednesday:        equ 3
-rtc_weekday_thursday:         equ 4
-rtc_weekday_friday:           equ 5
-rtc_weekday_saturday:         equ 6
+rtc_seconds_10s_mask:         EQU %00000111
+rtc_minutes_1s:               EQU rtc_base + (2*256)
+rtc_minutes_1s_h:             EQU 2
+rtc_minutes_10s:              EQU rtc_base + (3*256)
+rtc_minutes_10s_h:            EQU 3
+rtc_minutes_10s_mask:         EQU %00000111
+rtc_hours_1s:                 EQU rtc_base + (4*256)
+rtc_hours_1s_h:               EQU 4
+rtc_hours_10s:                EQU rtc_base + (5*256)
+rtc_hours_10s_h:              EQU 5
+rtc_hours_10s_mask:           EQU %00000011
+rtc_hours_10s_ampm:           EQU %00000100
+rtc_hours_10s_ampm_bix:       EQU 2
+rtc_hours_is_am:              EQU 0
+rtc_hours_is_pm:              EQU rtc_hours_10s_ampm
+rtc_days_1s:                  EQU rtc_base + (6*256)
+rtc_days_1s_h:                EQU 6
+rtc_days_10s:                 EQU rtc_base + (7*256)
+rtc_days_10s_h:               EQU 7
+rtc_days_10s_mask:            EQU %00000011
+rtc_months_1s:                EQU rtc_base + (8*256)
+rtc_months_1s_h:              EQU 8
+rtc_months_10s:               EQU rtc_base + (9*256)
+rtc_months_10s_h:             EQU 9
+rtc_months_10s_mask:          EQU %00000001
+rtc_years_1s:                 EQU rtc_base + (10*256)
+rtc_years_1s_h:               EQU 10
+rtc_years_10s:                EQU rtc_base + (11*256)
+rtc_years_10s_h:              EQU 11
+rtc_weekday:                  EQU rtc_base + (12*256)
+rtc_weekday_h:                EQU 12
+rtc_weekday_mask:             EQU %00000111
+rtc_weekday_sunday:           EQU 0
+rtc_weekday_monday:           EQU 1
+rtc_weekday_tuesday:          EQU 2
+rtc_weekday_wednesday:        EQU 3
+rtc_weekday_thursday:         EQU 4
+rtc_weekday_friday:           EQU 5
+rtc_weekday_saturday:         EQU 6
 
 ; Normally you shouldn't touch these to avoid messing up
 ; MASTERDOS functionality. If you do mess with them,
 ; consult the datasheet.
-rtc_ctrl_d_donotwrite:        equ rtc_base + (13*256)
-rtc_ctrl_d_30_second_adj:     equ %00001000
-rtc_ctrl_d_30_second_adj_bix: equ 3
-rtc_ctrl_d_irq_flag:          equ %00000100
-rtc_ctrl_d_irq_flag_bix:      equ 2
-rtc_ctrl_d_busy:              equ %00000010
-rtc_ctrl_d_busy_bix:          equ 1
-rtc_ctrl_d_hold:              equ %00000001
-rtc_ctrl_d_hold_bix:          equ 0
+rtc_ctrl_d_donotwrite:        EQU rtc_base + (13*256)
+rtc_ctrl_d_30_second_adj:     EQU %00001000
+rtc_ctrl_d_30_second_adj_bix: EQU 3
+rtc_ctrl_d_irq_flag:          EQU %00000100
+rtc_ctrl_d_irq_flag_bix:      EQU 2
+rtc_ctrl_d_busy:              EQU %00000010
+rtc_ctrl_d_busy_bix:          EQU 1
+rtc_ctrl_d_hold:              EQU %00000001
+rtc_ctrl_d_hold_bix:          EQU 0
 
-rtc_ctrl_e_donotwrite:        equ rtc_base + (14*256)
-rtc_ctrl_e_t1:                equ %00001000
-rtc_ctrl_e_t1_bix:            equ 3
-rtc_ctrl_e_t0:                equ %00000100
-rtc_ctrl_e_t0_bix:            equ 2
-rtc_ctrl_e_itrpt_stnd:        equ %00000010
-rtc_ctrl_e_itrpt_stnd_bix:    equ 1
-rtc_ctrl_e_mask:              equ %00000001
-rtc_ctrl_e_mask_bix:          equ 0
+rtc_ctrl_e_donotwrite:        EQU rtc_base + (14*256)
+rtc_ctrl_e_t1:                EQU %00001000
+rtc_ctrl_e_t1_bix:            EQU 3
+rtc_ctrl_e_t0:                EQU %00000100
+rtc_ctrl_e_t0_bix:            EQU 2
+rtc_ctrl_e_itrpt_stnd:        EQU %00000010
+rtc_ctrl_e_itrpt_stnd_bix:    EQU 1
+rtc_ctrl_e_mask:              EQU %00000001
+rtc_ctrl_e_mask_bix:          EQU 0
 
-rtc_ctrl_f_donotwrite:        equ rtc_base + (15*256)
-rtc_ctrl_f_test:              equ %00001000
-rtc_ctrl_f_test_bix:          equ 3
-rtc_ctrl_f_24_12:             equ %00000100
-rtc_ctrl_f_24_12_bix:         equ 2
-rtc_ctrl_f_stop:              equ %00000010
-rtc_ctrl_f_stop_bix:          equ 1
-rtc_ctrl_f_rest:              equ %00000001
-rtc_ctrl_f_rest_bix:          equ 0
+rtc_ctrl_f_donotwrite:        EQU rtc_base + (15*256)
+rtc_ctrl_f_test:              EQU %00001000
+rtc_ctrl_f_test_bix:          EQU 3
+rtc_ctrl_f_24_12:             EQU %00000100
+rtc_ctrl_f_24_12_bix:         EQU 2
+rtc_ctrl_f_stop:              EQU %00000010
+rtc_ctrl_f_stop_bix:          EQU 1
+rtc_ctrl_f_rest:              EQU %00000001
+rtc_ctrl_f_rest_bix:          EQU 0

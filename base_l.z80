@@ -6,116 +6,116 @@
 
 ; Colour lookup table (Palette) ports [WO]
 
-clut:                    equ 248
-palette_entry_0:         equ clut + (0*256)
-palette_entry_1:         equ clut + (1*256)
-palette_entry_2:         equ clut + (2*256)
-palette_entry_3:         equ clut + (3*256)
-palette_entry_4:         equ clut + (4*256)
-palette_entry_5:         equ clut + (5*256)
-palette_entry_6:         equ clut + (6*256)
-palette_entry_7:         equ clut + (7*256)
-palette_entry_8:         equ clut + (8*256)
-palette_entry_9:         equ clut + (9*256)
-palette_entry_10:        equ clut + (10*256)
-palette_entry_11:        equ clut + (11*256)
-palette_entry_12:        equ clut + (12*256)
-palette_entry_13:        equ clut + (13*256)
-palette_entry_14:        equ clut + (14*256)
-palette_entry_15:        equ clut + (15*256)
+clut:                    EQU 248
+palette_entry_0:         EQU clut + (0*256)
+palette_entry_1:         EQU clut + (1*256)
+palette_entry_2:         EQU clut + (2*256)
+palette_entry_3:         EQU clut + (3*256)
+palette_entry_4:         EQU clut + (4*256)
+palette_entry_5:         EQU clut + (5*256)
+palette_entry_6:         EQU clut + (6*256)
+palette_entry_7:         EQU clut + (7*256)
+palette_entry_8:         EQU clut + (8*256)
+palette_entry_9:         EQU clut + (9*256)
+palette_entry_10:        EQU clut + (10*256)
+palette_entry_11:        EQU clut + (11*256)
+palette_entry_12:        EQU clut + (12*256)
+palette_entry_13:        EQU clut + (13*256)
+palette_entry_14:        EQU clut + (14*256)
+palette_entry_15:        EQU clut + (15*256)
 
 ; Colour bit settings
-colour_blue_0:           equ %00000001
-color_blue_0:            equ colour_blue_0
-colour_red_0:            equ %00000010
-color_red_0:             equ colour_red_0
-colour_green_0:          equ %00000100
-color_green_0:           equ colour_green_0
-colour_half_bright:      equ %00001000
-color_half_bright:       equ colour_half_bright
-colour_blue_1:           equ %00010000
-color_blue_1:            equ colour_blue_1
-colour_red_1:            equ %00100000
-color_red_1:             equ colour_red_1
-colour_green_1:          equ %01000000
-color_green_1:           equ colour_green_1
-colour_mask:             equ %01111111
-color_mask:              equ colour_mask
+colour_blue_0:           EQU %00000001
+color_blue_0:            EQU colour_blue_0
+colour_red_0:            EQU %00000010
+color_red_0:             EQU colour_red_0
+colour_green_0:          EQU %00000100
+color_green_0:           EQU colour_green_0
+colour_half_bright:      EQU %00001000
+color_half_bright:       EQU colour_half_bright
+colour_blue_1:           EQU %00010000
+color_blue_1:            EQU colour_blue_1
+colour_red_1:            EQU %00100000
+color_red_1:             EQU colour_red_1
+colour_green_1:          EQU %01000000
+color_green_1:           EQU colour_green_1
+colour_mask:             EQU %01111111
+color_mask:              EQU colour_mask
 
 ; Interrupt Status port [RO]
 
-status:                  equ 249
-status_line_int:         equ %00000001
-status_line_int_bix:     equ 0
+status:                  EQU 249
+status_line_int:         EQU %00000001
+status_line_int_bix:     EQU 0
 ; While this was named the MOUSE interrupt, it's currently used exclusively by
 ; the SAM Comms Interface for RS232 controller interrupts.
 ; The MOUSE doesn't use this, and instead has its own counters that are read out
 ; serially by the user.
 ;STATUS_MOUSE_INT:       EQU %00000010 ; OBSOLETE
-status_comms_int:        equ %00000010
-status_comms_int_bix:    equ 1
-status_midi_in_int:      equ %00000100
-status_midi_in_int_bix:  equ 2
-status_frame_int:        equ %00001000
-status_frame_int_bix:    equ 3
-status_midi_out_int:     equ %00010000
-status_midi_out_int_bix: equ 4
-status_kbd_bits:         equ %11100000
+status_comms_int:        EQU %00000010
+status_comms_int_bix:    EQU 1
+status_midi_in_int:      EQU %00000100
+status_midi_in_int_bix:  EQU 2
+status_frame_int:        EQU %00001000
+status_frame_int_bix:    EQU 3
+status_midi_out_int:     EQU %00010000
+status_midi_out_int_bix: EQU 4
+status_kbd_bits:         EQU %11100000
 
 ; Line Interrupt setting port [WO]
 
-line_int:                equ 249
+line_int:                EQU 249
 
 ; Low Memory (0-16383) and ROM Overlay [R/W]
 
-lmpr:                    equ 250
-lmpr_page_mask:          equ %00011111
-lmpr_ram_in_0:           equ %00100000 ; AKA "RAM0"
-lmpr_rom_in_1:           equ %01000000 ; AKA "ROM1"
-lmpr_wprotect_ram:       equ %10000000 ; AKA "WPRAM"
+lmpr:                    EQU 250
+lmpr_page_mask:          EQU %00011111
+lmpr_ram_in_0:           EQU %00100000 ; AKA "RAM0"
+lmpr_rom_in_1:           EQU %01000000 ; AKA "ROM1"
+lmpr_wprotect_ram:       EQU %10000000 ; AKA "WPRAM"
 
 ; High Memory (32768-65535) Port [R/W]
 
-hmpr:                    equ 251
-hmpr_page_mask:          equ %00011111
-hmpr_mode3_clr_bit2:     equ %00100000 ; AKA "MD3S0"
-hmpr_mode3_clr_bit3:     equ %01000000 ; AKA "MD3S1"
-hmpr_external_mem:       equ %10000000 ; AKA "MCNTRL"
-hmpr_xmem_bix:           equ 7         ; The bit index for HMPR_EXTERNAL_MEM
+hmpr:                    EQU 251
+hmpr_page_mask:          EQU %00011111
+hmpr_mode3_clr_bit2:     EQU %00100000 ; AKA "MD3S0"
+hmpr_mode3_clr_bit3:     EQU %01000000 ; AKA "MD3S1"
+hmpr_external_mem:       EQU %10000000 ; AKA "MCNTRL"
+hmpr_xmem_bix:           EQU 7         ; The bit index for HMPR_EXTERNAL_MEM
 ; Video Port [R/W]
 
-vmpr:                    equ 252
-vmpr_page_mask:          equ %00011111
-vmpr_mode_mask:          equ %01100000
-vmpr_mode_1:             equ 0         ; ZX Spectrum compatible, one attribute per 8 pixel column and row
-vmpr_mode_2:             equ %00100000 ; ZX Spectrum with linear layout, one attribute per 8 pixel column, but per-line
-vmpr_mode_3:             equ %01000000 ; 512x192, 2-bit colour mode
-vmpr_mode_4:             equ %01100000 ; 256x192, 4-bit colour mode
-vmpr_txrxmidi:           equ %10000000
+vmpr:                    EQU 252
+vmpr_page_mask:          EQU %00011111
+vmpr_mode_mask:          EQU %01100000
+vmpr_mode_1:             EQU 0         ; ZX Spectrum compatible, one attribute per 8 pixel column and row
+vmpr_mode_2:             EQU %00100000 ; ZX Spectrum with linear layout, one attribute per 8 pixel column, but per-line
+vmpr_mode_3:             EQU %01000000 ; 512x192, 2-bit colour mode
+vmpr_mode_4:             EQU %01100000 ; 256x192, 4-bit colour mode
+vmpr_txrxmidi:           EQU %10000000
 
 ; Border Port [WO]
 
-border:                  equ 254
-border_colour_mask:      equ %00100111
-border_color_mask:       equ border_colour_mask
-border_colour_lomask:    equ %00000111
-border_color_lomask:     equ border_colour_lomask
-border_colour_hibit:     equ %00100000
-border_color_hibit:      equ border_colour_hibit
-border_mic:              equ %00001000
-border_beep:             equ %00010000
-border_midi_thru:        equ %01000000 ; AKA "THROM"
-border_screen_off:       equ %10000000 ; AKA "SCREEN OFF"
+border:                  EQU 254
+border_colour_mask:      EQU %00100111
+border_color_mask:       EQU border_colour_mask
+border_colour_lomask:    EQU %00000111
+border_color_lomask:     EQU border_colour_lomask
+border_colour_hibit:     EQU %00100000
+border_color_hibit:      EQU border_colour_hibit
+border_mic:              EQU %00001000
+border_beep:             EQU %00010000
+border_midi_thru:        EQU %01000000 ; AKA "THROM"
+border_screen_off:       EQU %10000000 ; AKA "SCREEN OFF"
 
 ; Keyboard Port [RO]
 
-keyboard:                equ 254
-keyboard_bits_mask:      equ %00011111
-keyboard_spen:           equ %00100000
-keyboard_ear:            equ %01000000
-keyboard_screen_off:     equ %10000000
+keyboard:                EQU 254
+keyboard_bits_mask:      EQU %00011111
+keyboard_spen:           EQU %00100000
+keyboard_ear:            EQU %01000000
+keyboard_screen_off:     EQU %10000000
 
 ; Midi Ports
 
-midi_out:                equ 253 ; [WO]
-midi_in:                 equ 253 ; [RO]
+midi_out:                EQU 253 ; [WO]
+midi_in:                 EQU 253 ; [RO]

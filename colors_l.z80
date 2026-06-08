@@ -6,30 +6,30 @@
 
 ; Primaries + Dark versions
 
-color_black:           equ 0
-color_red:             equ color_red_1 | color_red_0
-color_green:           equ color_green_1 | color_green_0
-color_blue:            equ color_blue_1 | color_blue_0
-color_yellow:          equ color_red | color_green
-color_cyan:            equ color_blue | color_green
-color_magenta:         equ color_red | color_blue
-color_white:           equ color_red | color_green | color_blue | color_half_bright
-color_dark_red:        equ color_red_0
-color_dark_green:      equ color_green_0
-color_dark_blue:       equ color_blue_0
-color_dark_yellow:     equ color_dark_red | color_dark_green
-color_dark_cyan:       equ color_dark_blue | color_dark_green
-color_dark_magenta:    equ color_dark_blue | color_dark_red
-color_light_grey:      equ color_red_1 | color_green_1 | color_blue_1
-color_dark_grey:       equ color_red_0 | color_green_0 | color_blue_0
+color_black:           EQU 0
+color_red:             EQU color_red_1 | color_red_0
+color_green:           EQU color_green_1 | color_green_0
+color_blue:            EQU color_blue_1 | color_blue_0
+color_yellow:          EQU color_red | color_green
+color_cyan:            EQU color_blue | color_green
+color_magenta:         EQU color_red | color_blue
+color_white:           EQU color_red | color_green | color_blue | color_half_bright
+color_dark_red:        EQU color_red_0
+color_dark_green:      EQU color_green_0
+color_dark_blue:       EQU color_blue_0
+color_dark_yellow:     EQU color_dark_red | color_dark_green
+color_dark_cyan:       EQU color_dark_blue | color_dark_green
+color_dark_magenta:    EQU color_dark_blue | color_dark_red
+color_light_grey:      EQU color_red_1 | color_green_1 | color_blue_1
+color_dark_grey:       EQU color_red_0 | color_green_0 | color_blue_0
 
 ; Grayscale
 
-color_grayscale_0:     equ color_black
-color_grayscale_1:     equ color_grayscale_0 | color_half_bright
-color_grayscale_2:     equ color_red_0 | color_green_0 | color_blue_0
-color_grayscale_3:     equ color_grayscale_2 | color_half_bright
-color_grayscale_4:     equ color_red_1 | color_green_1 | color_blue_1
-color_grayscale_5:     equ color_grayscale_4 | color_half_bright
-color_grayscale_6:     equ color_grayscale_4 | color_grayscale_2
-color_grayscale_7:     equ color_grayscale_6 | color_half_bright
+color_grayscale_0:     EQU color_black
+color_grayscale_1:     EQU color_grayscale_0 | color_half_bright
+color_grayscale_2:     EQU color_red_0 | color_green_0 | color_blue_0
+color_grayscale_3:     EQU color_grayscale_2 | color_half_bright
+color_grayscale_4:     EQU color_red_1 | color_green_1 | color_blue_1
+color_grayscale_5:     EQU color_grayscale_4 | color_half_bright
+color_grayscale_6:     EQU color_grayscale_4 | color_grayscale_2
+color_grayscale_7:     EQU color_grayscale_6 | color_half_bright

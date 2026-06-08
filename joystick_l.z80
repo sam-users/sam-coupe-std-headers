@@ -14,37 +14,37 @@
 ;       other.
 
 ; Low address (A7-A0) of port - this is the KEYBOARD port
-joystick:         equ &fe       ; KEYBOARD port.
+joystick:         EQU &FE       ; KEYBOARD port.
 
 ; Mask for joystick bits from KEYBOARD port
-joystick_mask:    equ %00011111
+joystick_mask:    EQU %00011111
 
 ; Joystick 1 (mapped to keys 6-0)
 ; ===============================
 
 ; Port for use with LD BC, JOYSTICK_1_PORT : IN A,(C)
-joystick_1_port:  equ &effe
+joystick_1_port:  EQU &EFFE
 ; Port for use with LD A, JOYSTICK_PORTH : IN A,(JOYSTICK)
-joystick_1_port_h:equ &ef
+joystick_1_port_h:EQU &EF
 
 ; Input bit masks
-joystick_1_left:  equ %00010000 ; = KEY 6
-joystick_1_right: equ %00001000 ; = KEY 7
-joystick_1_down:  equ %00000100 ; = KEY 8
-joystick_1_up:    equ %00000010 ; = KEY 9
-joystick_1_fire:  equ %00000001 ; = KEY 0
+joystick_1_left:  EQU %00010000 ; = KEY 6
+joystick_1_right: EQU %00001000 ; = KEY 7
+joystick_1_down:  EQU %00000100 ; = KEY 8
+joystick_1_up:    EQU %00000010 ; = KEY 9
+joystick_1_fire:  EQU %00000001 ; = KEY 0
 
 ; Joystick 2 (mapped to keys 1-5)
 ; ===============================
 
 ; Port for use with LD BC, JOYSTICK_2_PORT : IN A,(C)
-joystick_2_port:  equ &f7fe
+joystick_2_port:  EQU &F7FE
 ; Port for use with LD A, JOYSTICK_2_PORTH : IN A,(JOYSTICK)
-joystick_2_port_h:equ &f7
+joystick_2_port_h:EQU &F7
 
 ; Input bit masks
-joystick_2_left:  equ %00000001 ; = KEY 1
-joystick_2_right: equ %00000010 ; = KEY 2
-joystick_2_down:  equ %00000100 ; = KEY 3
-joystick_2_up:    equ %00001000 ; = KEY 4
-joystick_2_fire:  equ %00010000 ; = KEY 5
+joystick_2_left:  EQU %00000001 ; = KEY 1
+joystick_2_right: EQU %00000010 ; = KEY 2
+joystick_2_down:  EQU %00000100 ; = KEY 3
+joystick_2_up:    EQU %00001000 ; = KEY 4
+joystick_2_fire:  EQU %00010000 ; = KEY 5
