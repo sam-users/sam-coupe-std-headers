@@ -1,0 +1,30 @@
+; SAM BASIC ROM Restart Routines (use Z80 instruction RST followed by name)
+;
+; Author: Simon Cooke (spectecjr@gmail.com)
+; Licensed under the MIT license (see LICENSE file).
+
+; Resets as if machine has been reset.
+RST_RESET:          EQU 00h
+
+; RST RST_BASIC_ERROR will never return. It looks at the byte after it, to map to a
+; BASIC error code.
+RST_BASIC_ERROR:    EQU 08h
+
+; RST RST_PRINT_A will print the character in A. IX, DE, HL, BC are preserved.
+RST_PRINT_A:        EQU 10h
+
+; RST RST_GET_CHAR gets the current character from the BASIC line
+RST_GET_CHAR:       EQU 18h
+
+; RST RST_NEXT_CHAR gets the next character from the BASIC line
+RST_NEXT_CHAR:      EQU 20h
+
+; RST RST_FPCALC will call the floating point calculator. Bytes following the RST call are
+; the instructions the FP Calc will use.
+RST_FP_CALC:        EQU 28h
+
+; User-programmable vector (write target to RST30V) (ROM1 call if called from ROM)
+RST_USER_VECTOR:    EQU 30h
+
+; Maskable interrupt routine
+RST_INTERRUPT:      EQU 38h

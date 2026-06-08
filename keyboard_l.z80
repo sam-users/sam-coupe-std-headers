@@ -113,7 +113,7 @@ keybit_m:           EQU %00000100
 keybit_n:           EQU %00001000
 keybit_b:           EQU %00010000
 keybit_comma:       EQU %00100000
-keybit_period:      EQU %0100000  0
+keybit_period:      EQU %01000000
 keybit_inv:         EQU %10000000
 
 ; ROW 8 values
