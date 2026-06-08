@@ -24,6 +24,10 @@ Z80 assembly language development. They're meant to make your life easier by def
 
 Following is the list of files included in this repository, and what they're for.
 
+> **Note:** This is for the uppercase files. Lowercase versions (filename suffix `_l.z80`) are also available.
+
+### Ports and Hardware
+
 | Filename | Description |
 | -------- | ----------- |
 | [allports.z80](allports.z80) | Master include that includes all of the other files. Include this in your program to make your life a little easier. |
@@ -36,6 +40,25 @@ Following is the list of files included in this repository, and what they're for
 | [lightpen.z80](lightpen.z80) | Lightpen support. |
 | [sound.z80](sound.z80) | Constants and values used by the SAA-1099 sound chip. |
 
+### Basic ROM interface
+
+| Filename | Description |
+| -------- | ----------- |
+| [romjmptable.z80](romjmptable.z80) | BASIC ROM Jump table routine addresses, plus some utility/helper functions. |
+| [romrst.z80](romrst.z80) | Z80 Restart (RST) routine definitions. |
+| [fp_calc.z80s](fp_calc.z80s) | Floating Point calculator command codes. |
+
+### Scripts
+
+We have two scripts in the project so far. They're written in Python and live in the folder `\scripts`.
+
+| Script file | Purpose |
+| ----------- | ------- |
+| generate_lowercase_lables.py | Generates lowercase versions of the uppercase files, without altering keywords, strings, or comments. |
+| list_equ_labvels_table.py | Generates a list of all of the header file symbols that correspond to equates, in alphabetical order, including the file they came from. |
+
+The Default Build Action in VS Code is set to run `generate_lowercase_tables.py` on the codebase, and should be run after you add or edit an upper-case file.
+
 ## Coding Style
 
 - We use consistent casing for constants within a file. FIles ending in "_l.z80" are lowercase variants, without the_l. they're UPPERCASE.
@@ -45,6 +68,7 @@ Following is the list of files included in this repository, and what they're for
 - We use `lowercase` for assembly instructions.
 - We use `UPPERCASE` for assembly directives (`EQU`, `DW`, `INCLUDE`, etc...)
 - We provide US and UK English spelling variants. Where it makes sense to do so, they're provided in separate files. Usually, they're provided inline immediately below the UK variant.
+
 
 ## Conventions
 
