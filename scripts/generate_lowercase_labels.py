@@ -7,6 +7,10 @@ every assembly label (an identifier defined as `name:` at the start of a
 line, plus every later reference to that same identifier) is rewritten in
 lowercase. Quoted strings and ';' comments are left untouched, so labels
 mentioned there keep their original casing.
+
+INCLUDE/INC directives are the exception: when one references a .z80/.z80s
+file whose name doesn't already end in '_l', the generated file points it
+at the '_l' sibling instead, so the lowercased output stays self-contained.
 """
 
 import re
@@ -17,6 +21,10 @@ SOURCE_GLOBS = ("*.z80", "*.z80s")
 
 LABEL_DEFINITION_RE = re.compile(r"^\s*([A-Za-z_][A-Za-z0-9_]*)\s*:")
 IDENTIFIER_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_]*")
+INCLUDE_DIRECTIVE_RE = re.compile(
+    r"(?im)^(\s*(?:INCLUDE|INC)\b\s+)([\"'])(.+?)\2"
+)
+INCLUDED_FILENAME_RE = re.compile(r"^(.*?)(\.z80s?)$", re.IGNORECASE)
 
 
 def split_into_segments(line):
@@ -65,6 +73,26 @@ def find_label_names(lines):
     return labels
 
 
+def point_include_at_lowercase_variant(line):
+    """Rewrite INCLUDE/INC directives to reference the '_l' sibling file.
+
+    `INCLUDE "base.z80"` becomes `INCLUDE "base_l.z80"`, but a directive
+    that already targets a '_l' file (or a non-.z80/.z80s file) is left
+    untouched.
+    """
+
+    def replace(match):
+        prefix, quote, filename = match.group(1), match.group(2), match.group(3)
+        name_match = INCLUDED_FILENAME_RE.match(filename)
+        if name_match:
+            stem, extension = name_match.group(1), name_match.group(2)
+            if not stem.endswith("_l"):
+                filename = f"{stem}_l{extension}"
+        return f"{prefix}{quote}{filename}{quote}"
+
+    return INCLUDE_DIRECTIVE_RE.sub(replace, line)
+
+
 def lowercase_known_labels(text, labels):
     return IDENTIFIER_RE.sub(
         lambda m: m.group(0).lower() if m.group(0) in labels else m.group(0), text
@@ -77,6 +105,7 @@ def lowercase_labels_in_file(source_path, labels):
 
     rewritten_lines = []
     for line in lines:
+        line = point_include_at_lowercase_variant(line)
         rewritten_lines.append(
             "".join(
                 lowercase_known_labels(chunk, labels) if is_code else chunk
