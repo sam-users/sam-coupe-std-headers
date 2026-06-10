@@ -84,7 +84,7 @@ fp_greater_or_equal_to_0:   EQU &2F ; Pop last value. Stack 1 (true) if it is >=
 
 fp_trunc:                   EQU &30 ; Take floor of N1
 fp_normalize_5byte_form:    EQU &31 ; Transform top of stack to 5-byte form if it's not already in that form. 
-fp_restack:                 EQU FP_NORMALIZE_5BYTE
+fp_restack:                 EQU fp_normalize_5byte_form
 fp_pow_2:                   EQU &32 ; Calculate 2 ^ N1
 fp_exit:                    EQU &33 ; Finishes using the floating point calculator and continues.
 fp_exit_and_ret:            EQU &34 ; Finishes using the calculator, and do a RET
@@ -104,7 +104,7 @@ fp_atn:                     EQU &3E
 fp_logn:                    EQU &3F
 fp_exp:                     EQU &40
 fp_abs:                     EQU &41
-fp_sgn:                    EQU &42
+fp_sgn:                     EQU &42
 fp_sqr:                     EQU &43
 fp_int:                     EQU &44
 fp_usr:                     EQU &45
