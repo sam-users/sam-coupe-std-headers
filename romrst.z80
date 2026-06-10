@@ -4,27 +4,27 @@
 ; Licensed under the MIT license (see LICENSE file).
 
 ; Resets as if machine has been reset.
-RST_RESET:          EQU 00h
+RST_RESET:          EQU &00
 
 ; RST RST_BASIC_ERROR will never return. It looks at the byte after it, to map to a
 ; BASIC error code.
-RST_BASIC_ERROR:    EQU 08h
+RST_BASIC_ERROR:    EQU &08
 
 ; RST RST_PRINT_A will print the character in A. IX, DE, HL, BC are preserved.
-RST_PRINT_A:        EQU 10h
+RST_PRINT_A:        EQU &10
 
 ; RST RST_GET_CHAR gets the current character from the BASIC line
-RST_GET_CHAR:       EQU 18h
+RST_GET_CHAR:       EQU &18
 
 ; RST RST_NEXT_CHAR gets the next character from the BASIC line
-RST_NEXT_CHAR:      EQU 20h
+RST_NEXT_CHAR:      EQU &20
 
 ; RST RST_FPCALC will call the floating point calculator. Bytes following the RST call are
 ; the instructions the FP Calc will use.
-RST_FP_CALC:        EQU 28h
+RST_FP_CALC:        EQU &28
 
 ; User-programmable vector (write target to RST30V) (ROM1 call if called from ROM)
-RST_USER_VECTOR:    EQU 30h
+RST_USER_VECTOR:    EQU &30
 
 ; Maskable interrupt routine
 RST_INTERRUPT:      EQU 38h
